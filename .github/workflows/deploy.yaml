@@ -16,28 +16,60 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - uses: actions/setup-node@v4
         with:
           node-version: 'lts/*'
-          
+
       - name: Setup @antfu/ni
         run: npm i -g @antfu/ni
-        
+
       - name: Install root dependencies
         run: nci
-        
+
       - name: Install lesson dependencies
         run: nr install:all
-        
+
       - name: Build all lessons
         run: |
           node --max-old-space-size=6144 $(which nr) build:all \
             --base /${{github.event.repository.name}}/
-          
+
+      - name: Generate index.html
+        run: |
+          cat > dist/index.html << 'EOF'
+          <html>
+            <header>
+              <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+            </header>
+            <body>
+              <h1>Columbia BigD103 - Course Lessons</h1>
+              <ul>
+          EOF
+
+          # Find all slides.md files and generate links
+          find lessons -name "slides.md" | sort | while read slidepath; do
+            # Extract directory path (remove lessons/ prefix and /slides.md suffix)
+            dirpath=$(dirname "$slidepath" | sed 's|^lessons/||')
+
+            # Convert directory path to title (replace slashes and underscores with spaces, capitalize)
+            title=$(echo "$dirpath" | sed 's|/| - |g' | sed 's|_| |g' | sed 's|\b\w|\U&|g')
+
+            # Convert directory path to URL (replace slashes with dashes for build output)
+            urlpath=$(echo "$dirpath" | sed 's|/|-|g')
+
+            echo "<li><a href=\"./$urlpath/\">$title</a></li>" >> dist/index.html
+          done
+
+          cat >> dist/index.html << 'EOF'
+              </ul>
+            </body>
+          </html>
+          EOF
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
-        
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
