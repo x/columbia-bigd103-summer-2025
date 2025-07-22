@@ -1,0 +1,14 @@
+{
+    "slidev.preview-sync": true,
+    "cSpell.enabled": true,
+    "cSpell.words": [
+        "slidev",
+        "Tablular"
+    ],
+    "slidev.dev-command": "nvm use --lts && npm exec -c 'slidev ${args}'",
+    "command-runner.commands": {
+      "Make White Background Transparent": {
+        "command": "convert ${file} -fuzz 10% -transparent white ${fileDirname}/${fileBasenameNoExtension}_transparent.png"
+      }
+    },
+}

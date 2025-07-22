@@ -1,0 +1,14 @@
+{
+  "name": "python-hello-world",
+  "private": true,
+  "scripts": {
+    "dev": "slidev slides.md",
+    "build": "slidev build slides.md --out ../../dist/python/hello_world",
+    "export": "slidev export slides.md"
+  },
+  "devDependencies": {
+    "@slidev/cli": "^52.0.0",
+    "@slidev/theme-default": "latest",
+    "vue": "^3.5.17"
+  }
+}

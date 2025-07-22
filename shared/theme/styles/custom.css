@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
+html.dark {
+  /* default theme color */
+  --slidev-primary: #161c2c;
+
+  /* Custom colors*/
+  --slidev-color: #f3eff5;
+  --slidev-background: #161c2c;
+
+  /* Font families */
+  font-family: 'IBM Plex Serif', serif;
+
+  /* Text sizes */
+  --slidev-font-size: 1.1em;
+  --slidev-default-font-size: var(--slidev-font-size);
+  --slidev-cover-font-size: var(--slidev-font-size);
+  --slidev-section-font-size: var(--slidev-font-size);
+  --slidev-center-font-size: var(--slidev-font-size);
+  --slidev-two-columns-font-size: var(--slidev-font-size);
+  --slidev-aboutme-font-size: var(--slidev-font-size);
+  --slidev-code-font-size: 12px;
+
+  /* Code colors */
+  --slidev-code-background: #2D3241;
+  --slidev-code-border: #242d34;
+
+  /* Accent colors */
+  --slidev-accents-rose: #f141a8;
+  --slidev-accents-teal: #44ffd2;
+  --slidev-accents-yellow: #ffe45e;
+  --slidev-accents-red: #fe4a49;
+  --slidev-accents-lightblue: #15c2cb;
+  --slidev-accents-blue: #5eadf2;
+  --slidev-accents-vulcan: #0e131f;
+
+  /* Header shadow */
+  --slidev-header-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
+  /*  Default */
+  --slidev-default-headingBg: var(--slidev-accents-yellow);
+  --slidev-default-headingColor: var(--slidev-accents-vulcan);
+  --slidev-default-background: var(--slidev-background);
+
+  /*  Center */
+  --slidev-center-headingBg: var(--slidev-accents-blue);
+  --slidev-center-headingColor: var(--slidev-accents-vulcan);
+  --slidev-center-background: var(--slidev-background);
+
+  /*  Cover */
+  --slidev-cover-headingBg: var(--slidev-accents-teal);
+  --slidev-cover-headingColor: var(--slidev-accents-vulcan);
+  --slidev-cover-background: var(--slidev-background);
+
+  /*  Section */
+  --slidev-section-headingBg: var(--slidev-accents-lightblue);
+  --slidev-section-headingColor: var(--slidev-accents-vulcan);
+  --slidev-section-background: var(--slidev-background);
+
+  /*  About me */
+  --slidev-aboutme-background: var(--slidev-color);
+  --slidev-aboutme-color: var(--slidev-background);
+  --slidev-aboutme-helloBg: var(--slidev-accents-yellow);
+  --slidev-aboutme-helloColor: var(--slidev-background);
+  --slidev-aboutme-nameColor: var(--slidev-accents-red);
+
+
+  .monaco-editor .view-overlays .current-line {
+      background-color: #2D3241;
+  }
+
+  .slidev-layout{
+    background-color: var(--slidev-background);
+  }
+
+  .slidev-slide-content {
+    background-color: var(--slidev-background) !important;
+  }
+
+  h1, h2 {
+      background-color: var(--slidev-default-headingBg);
+      color: var(--slidev-default-headingColor);
+      display: inline-block;
+      padding: 0.1em 0.2em;
+
+      --slidev-code-background: transparent;
+  }
+
+  .invert-when-dark-mode {
+    filter: invert(1);
+  }
+
+}
+
+html.light {
+
+  /* Solarized Theme */
+  --solarized-base03: #002b36;
+  --solarized-base02: #073642;
+  --solarized-base01: #586e75;
+  --solarized-base00: #657b83;
+  --solarized-base0: #839496;
+  --solarized-base1: #93a1a1;
+  --solarized-base2: #eee8d5;
+  --solarized-base3: #fdf6e3;
+  --solarized-yellow: #b58900;
+  --solarized-orange: #cb4b16;
+  --solarized-red: #dc322f;
+  --solarized-magenta: #d33682;
+  --solarized-violet: #6c71c4;
+  --solarized-blue: #268bd2;
+  --solarized-cyan: #2aa198;
+  --solarized-green: #859900;
+  
+  /* Font families */
+  font-family: 'IBM Plex Serif', serif;
+  
+  /* Accent colors */
+  --slidev-accents-rose: #f141a8;
+  --slidev-accents-teal: var(--solarized-cyan);;
+  --slidev-accents-yellow: var(--solarized-yellow);
+  --slidev-accents-red: var(--solarized-red);
+  --slidev-accents-lightblue: var(--solarized-cyan);
+  --slidev-accents-blue: var(--solarized-blue);
+  --slidev-accents-vulcan: #0e131f;
+
+  --slidev-background: var(--solarized-base3);
+  --slidev-default-headingBg: var(--slidev-accents-teal);
+  --slidev-default-headingColor: var(--solarized-base3);
+  --slidev-code-background: var(--solarized-base2);
+
+  .slidev-layout {
+    background-color: var(--slidev-background);
+    color: var(--solarized-base03)
+  }
+
+  /* Sets the background color of the slide content, such as an image */
+  .slidev-slide-content {
+    background-color: var(--slidev-background) !important;
+  }
+
+  h1, h2 {
+      background-color: var(--slidev-default-headingBg);
+      color: var(--slidev-default-headingColor);
+      display: inline-block;
+      padding: 0.1em 0.2em;
+
+      --slidev-code-background: transparent;
+  }
+
+}
+
+p.subheading {
+  @apply -mt-2 opacity-50 mb-4;
+}
+
+/* Copy this from h1 */
+h2 {
+  @apply mb-4 -ml-[0.05em];
+}
+
+/* Copy this from h2 */
+p + h3, ul + h3, table + h3 {
+  @apply mt-10;
+}
+
+h3 {
+  font-weight: 500;
+}
+
+.col-left {
+  padding-right: 0.5em;
+}
+
+.col-right {
+  padding-left: 0.5em;
+}
+
+/* Add margin between subsequent code blocks and h2s.
+ * I'm sure there's a better way to do this...
+ */
+.slidev-monaco-container + h2,
+.slidev-monaco-container + h3,
+.slidev-monaco-container + .slidev-monaco-container,
+.slidev-monaco-container + .slidev-code-wrapper,
+.slidev-code-wrapper + h2,
+.slidev-code-wrapper + h3,
+.slidev-code-wrapper + .slidev-monaco-container,
+.slidev-code-wrapper + .slidev-code-wrapper
+{
+  margin-top: 1em;
+}
+
+.slidev-layout.header-link {
+  @apply text-center grid h-full;
+
+  h1, h2 {
+    @apply text-6xl font-700;
+  }
+
+  h1 + p, h2 + p {
+    @apply text-2xl mt-4 opacity-100 font-mono;
+  }
+}
