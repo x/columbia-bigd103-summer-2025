@@ -4,6 +4,9 @@ theme: ../../shared/theme
 info: |
   Class Number: BIGD103
   Instructor: Mr. Peticolas
+fonts:
+    sans: 'IBM Plex Serif'
+    mono: 'IBM Plex Mono'
 transition: slide-left
 layout: cover
 ---
@@ -310,6 +313,7 @@ _For the most part, things will be in the slides and assignments that I distribu
 
 ---
 layout: header-link
+transition: fade
 ---
 
 ### `courseworks2.columbia.edu/courses/220757`
@@ -319,16 +323,14 @@ Everyone should have access to the Courseworks page for this class!
 I will be posting all the slides, assignments, and other materials there.
 
 ---
+layout: header-link
+---
 
-## Example Class Structure
+### `bigd103.link/courseworks`
 
-- 1:00 to 1:10pm (10m) - Do Now
-- 1:10 to 1:40 (30m) - Lecture
-- 1:40 to 1:45 (5m) - Break
-- 1:45 to 2:15 (30m) - Lecture or Activity
-- 2:15 to 2:20 (5m) - Break
-- 2:20 to 2:50 (30m) - Lecture or Activity
-- 2:50 to 3:00 (10m) - Wrap Up
+I've set up a custom URL shortener for this class.
+
+Assignments, slides, and other materials will be posted with this.
 
 ---
 layout: header-link
@@ -336,7 +338,7 @@ layout: header-link
 
 ## Let's Collect Some Data
 
-TODO
+[bigd103.link/intro-form](https://bigd103.link/intro-form)
 
 ---
 layout: header-link
@@ -373,11 +375,11 @@ image: image-11.png
 
 - **Jupyter Notebooks:** Hosted by Columbia
 
-- **Visual Studio Code:** Primary code editor.
-
-### <u>Maybe</u> Haves
+### <u>Eventually</u> Haves
 
 - **Python (3.x):** Our primary programming language.
+
+- **Visual Studio Code:** Primary code editor.
 
 - **Git:** For accessing and sharing code.
 
@@ -425,7 +427,6 @@ image: image-15.png
 - IDEs and editors like PyCharm, VS Code, Vim, and Emacs are widely supported.
 - Virtual environment management is straightforward using `venv`.
 
-
 ---
 layout: image-right
 image: image-5.png
@@ -436,7 +437,14 @@ image: image-5.png
 - Jupyter Notebooks are a web-based interactive computing environment.
 - The were created for academic research and data science.
 - They allow you to write and execute code in a web browser.
-- **We will be using Jupyter Notebooks for assignments and projects.**
+- **We will be using Jupyter Notebooks for assignments and projects.** (Except when we don't.)
+
+---
+layout: section
+---
+
+# AI
+
 
 ---
 layout: image-right
@@ -445,32 +453,18 @@ image: ./c1111f14-f0f7-4128-8ccb-bc17bd6e2d81.png
 
 ## Using ChatGPT and other AI in this class
 
-1. I'm going to treat you like adults.
-2. You will not learn if AI writes your code.
-3. I will know if AI wrote your code.
+### Facts
 
-Everyone in this class should feel comfortable using AI tools to help them learn.
+1. You will not learn if AI writes your code.
+2. <u>I will know</u> if you copy-paste AI code.
 
-- Clarify concepts.
-- Debug issues.
-- Give examples.
+<br>
 
-**But you should be writing your own code.**
+### Also Facts
 
----
-layout: center
----
+3. Using AI can help your understanding.
+4. Your career <u>will</u> involve using AI tools.
 
-## Breakout Exercise
+<br>
 
-TODO
-
-- ~~We're going to break into groups of 3~~
-- ~~One (or more) of~~ you will set up:
-    - Python (https://python.swaroopch.com/installation.html)
-    - VSCode (https://code.visualstudio.com/)
-- You will write and run `Hello World` (https://python.swaroopch.com/first_steps.html)
-
-  ```py
-  print("Hello World")
-  ```
+**What do you think our class policy should be on using AI?**

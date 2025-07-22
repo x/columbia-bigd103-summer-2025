@@ -1,9 +1,9 @@
 {
-  "name": "python-hello-world",
+  "name": "python-conditionals",
   "private": true,
   "scripts": {
     "dev": "slidev slides.md",
-    "build": "slidev build slides.md --out ../../dist/python/hello_world",
+    "build": "slidev build slides.md --out ../../dist/python/conditionals",
     "export": "slidev export slides.md"
   },
   "devDependencies": {

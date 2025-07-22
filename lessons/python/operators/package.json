@@ -1,9 +1,9 @@
 {
-  "name": "python-hello-world",
+  "name": "python-operators",
   "private": true,
   "scripts": {
     "dev": "slidev slides.md",
-    "build": "slidev build slides.md --out ../../dist/python/hello_world",
+    "build": "slidev build slides.md --out ../../dist/python/operators",
     "export": "slidev export slides.md"
   },
   "devDependencies": {

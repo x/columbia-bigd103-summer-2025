@@ -10,10 +10,13 @@ info: |
   Instructor: Mr. Peticolas
 transition: slide-left
 layout: cover
+addons:
+  - slidev-addon-python-runner
 ---
 
 # Hello World
-### A Quick Introduction to Computers, Programming, and Python
+
+A Quick Introduction to Computers, Programming, and Python
 
 ---
 layout: image-right
@@ -120,8 +123,12 @@ backgroundSize: contain
 *Python handles the translation for you!*
 
 ---
+layout: two-cols-header-2
+---
 
 ## Basic Input/Output
+
+::left::
 
 ### Input
 - **Getting information** from the user
@@ -131,13 +138,22 @@ backgroundSize: contain
 - **Showing information** to the user
 - Screen, speakers, files, internet
 
-### In Programming
+### In Python Code
 - `input()` - get text from user
 - `print()` - show text to user
 
----
+::right::
 
+### Output
+```python
+print("Hello, World!")
+```
 
+### Input and Output
+```python
+name = input("Enter your name: ")
+print(f"Hello, {name}!")
+```
 
 
 ---
@@ -183,6 +199,8 @@ backgroundSize: contain
   print('hello world')  # Note that print is a function
   ```
 
+**Well commented code is easier to understand for future readers (including yourself).**
+
 ---
 
 ## Literal Constants
@@ -222,6 +240,33 @@ Numbers are mainly of two types - **integers** and **floats**.
 
 ---
 
+## Variables
+
+- Variables are used to store data.
+- You can assign a value to a variable using the `=` operator.
+```python {monaco-run} {autorun: false}
+name = 'Mr. P'
+age = 99
+print(name)
+print('is')
+print(age)
+print('years old')
+```
+
+---
+
+## String Concatenation
+
+You can concatenate strings using the `+` operator.
+
+```python {monaco-run} {autorun: false}
+name = 'Mr. P'
+age = 99
+print(name + ' is ' + str(age) + ' years old')
+```
+
+---
+
 ## String Interpolation
 
 Python has a powerful string interpolation capability.
@@ -230,13 +275,6 @@ Python has a powerful string interpolation capability.
 name = 'Mr. P'
 age = 99
 print(f'{name} was {age} years old')
-```
-
-We can format values while interpolating.
-
-```python {monaco-run} {autorun: false}
-weight = 123.456
-print(f'Weight is {weight:.2f}')
 ```
 
 ---
@@ -289,301 +327,77 @@ not True
 ## False
 ```
 
-
----
-layout: two-cols-header-2
 ---
 
-## `if` Statement
+## Indentation
 
-The `if` statement is used to conditionally execute a block of code.
+- Whitespace at the beginning of the line
+- Determines grouping of statements
+- Use four spaces for indentation
+  ```python {monaco-run} {autorun: false}
+  if True:
+      print('True')
+  else:
+      print('False')
+  ```
 
-### Syntax
-```python
-if condition:
-    statement
-```
+---
+
+## Some Basic Math
 
 ::left::
 
-```python {monaco-run} {autorun: false}
-x = 10
-if x > 5:
-    print("x is greater than 5")
-```
-
-::right::
+Python, at it's core, is a calculator. You can do basic math operations like addition, subtraction, multiplication, and division.
 
 ```python {monaco-run} {autorun: false}
-x = 10
-y = 3
-if x > 5 and y < 7:
-    print("x is greater than 5")
+print(2 + 3)  # Addition
+print(5 - 2)  # Subtraction
+print(2 * 3)  # Multiplication
+print(6 / 2)  # Division
 ```
 
----
-
-## else Statement
-
-The `else` statement is used to execute a block of code if the condition in the `if` statement is false.
-
-### Syntax
-
-```python
-if condition:
-    statement
-else:
-    statement
-```
+It also works on variables
 
 ```python {monaco-run} {autorun: false}
-x = 10
-if x > 15:
-    print("x is greater than 15")
-else:
-    print("x is not greater than 15")
+x = 5
+y = 2
+z = x + y
+print(z)
 ```
 
+We'll talk WAY more about this in the next lesson, but for now, just know that Python can do math.
 
 ---
-
-## `elif` Statement
-
-The `elif` (short for else if) statement is used to check multiple expressions for true and execute a block of code as soon as one of the conditions is true.
-
-### Syntax
-```py
-if condition1:
-    statement
-elif condition2:
-    statement
-else:
-    statement
-```
-
-```py {monaco-run}
-x = 10
-if x > 15:
-    print("x is greater than 15")
-elif x > 5:
-    print("x is greater than 5 but not greater than 15")
-else:
-    print("x is not greater than 5")
-```
-
+layout: iframe-right
+url: https://pyodide.org/en/stable/console.html
 ---
 
-## Loops
+## REPL - Read-Eval-Print Loop
 
-Python has two primitive loop commands, `for` and `while`.
-
-### `while` Loops
-```python {monaco-run} {autorun: false}
-i = 1
-while i < 3:
-    print(i)
-    i += 1
-```
-
-
-### `for` Loops
-```python {monaco-run} {autorun: false}
-for i in range(1, 3):
-    print(i)
-```
+- **Interactive** way to run code
+- **R**ead your code → **E**valuate it → **P**rint the result → **L**oop back
+- Type code, hit Enter, see result immediately
+- Perfect for **experimenting** and **learning**
 
 ---
-layout: section
-hideInToc: true
+layout: iframe-right
+url: https://jupyter.org/try-jupyter/lab/
 ---
 
-# Python Functions
+## Jupyter Notebook
 
+- **Web-based** coding environment
+- Combines **code**, **text**, and **output** in one document
+- Code goes in **cells** - run one cell at a time
+- Like a **digital notebook** for programming
+- Perfect for **data science** and **learning**
 
----
-
-## Python Functions
-
-*In Python, functions are defined with the `def` keyword and use **indentation** (rather than braces) to indicate code blocks. Python also allows **dynamic typing**, meaning you don't have to specify variable types as you might in Java or JavaScript.*
-
-- Use `def` followed by the function name and parentheses.
-- The body is indented (traditionally 4 spaces).
-
-```python {monaco-run} {autorun: false}
-def say_hello():
-    print('Hello, world!')
-
-say_hello()
-```
+*Think: Google Docs + Python code*
 
 ---
-
-## Function Arguments
-
-*Python functions can accept arguments just like Java or JS, but you don't have to specify types by default (you can optionally use type hints).*
-
-```python {monaco-run} {autorun: false}
-def print_max(a, b):
-    if a > b:
-        print(a, 'is maximum')
-    else:
-        print(b, 'is maximum')
-
-print_max(3, 4)
-```
-
+layout: header-link
 ---
 
-## The return Statement
+# Exercise: Variables
 
-*Unlike Java’s `void` or JS functions that might return `undefined`, Python will return `None` if you don’t explicitly return something.*
-
-```python {monaco-run} {autorun: false}
-def maximum(x, y):
-    if x > y:
-        return x
-    else:
-        return y
-
-val = maximum(2, 3)
-print(val)
-```
-
----
-
-## Keyword Arguments
-
-*Python allows calling functions using **keyword arguments**, so order doesn’t matter.*
-
-```python {monaco-run} {autorun: false}
-def print_max(a, b):
-    if a > b:
-        print(a, 'is maximum')
-    else:
-        print(b, 'is maximum')
-
-print_max(b=3, a=4)
-```
-
----
-
-## Default Arguments
-
-*Default arguments let you give a function parameter a default value if none is provided.*
-
-```python {monaco-run} {autorun: false}
-def say(message, times=1):
-    print(message * times)
-
-say('Hello')
-say('World', 5)
-```
-
----
-
-## Local Variables
-
-*In Python, variables defined inside a function are local unless otherwise declared (e.g. with `global`).*
-
-```python {monaco-run} {autorun: false}
-def func(x):
-    print('x is', x)
-    x = 2
-    print('Changed local x to', x)
-
-x = 50
-func(x)
-print('x is still', x)
-```
-
----
-
-## Recursion
-
-*Python supports recursion (though the default recursion depth is limited).*
-
-```python {monaco-run} {autorun: false}
-def factorial(n):
-    if n == 1:
-        return 1
-    else:
-        return n * factorial(n - 1)
-
-print(factorial(5))
-```
-
----
-
-## Docstrings
-
-*Docstrings are how Python does multi-line documentation inside functions (or classes, modules, etc.).*
-
-```python {monaco-run} {autorun: false}
-def print_max(a, b):
-    """
-    Prints the maximum of two numbers.
-    """
-    a = int(a)
-    b = int(b)
-    if a > b:
-        print(a, 'is maximum')
-    else:
-        print(b, 'is maximum')
-
-print(print_max.__doc__)
-```
-
----
-
-## Type Hints
-
-*Python’s type hints are optional and aren’t enforced at runtime, but they’re useful for tools (like linters or IDEs).*
-
-```python {monaco-run} {autorun: false}
-def print_max(a: int, b: int):
-    """Prints the maximum of two numbers."""
-    if a > b:
-        print(a, 'is maximum')
-    else:
-        print(b, 'is maximum')
-
-print_max(3, 4)
-```
-
----
-
-## Input/Output Functions
-
-*Python has built-in functions for reading from and writing to the console.*
-
-### Input
-Input pauses the program and waits for the user to type something. Whatever the user types is
-returned as a string.
-
-```python
-text = input('Enter something: ')
-```
-
-### Print
-Print writes to the console.
-
-```python
-print('You entered:', text)
-```
-
----
-
-## Exercise: `is_prime`
-
-*Let's write a function that determines if a number is prime.*
-
-```python {monaco-run} {autorun: false}
-def is_prime(n):
-    return False
-
-val = is_prime(7)
-print(f"7 is {val}")
-
-val = is_prime(14)
-print(f"14 is {val}")
-```
+[bigd103.link/variables](https://bigd103.link/variables)

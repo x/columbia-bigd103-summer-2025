@@ -3,7 +3,15 @@
     "cSpell.enabled": true,
     "cSpell.words": [
         "slidev",
-        "Tablular"
+        "Tablular",
+        "BIGD",
+        "Peticolas",
+        "autorun",
+        "elif",
+        "docstring",
+        "chatbot",
+        "courseworks",
+        "venv",
     ],
     "slidev.dev-command": "nvm use --lts && npm exec -c 'slidev ${args}'",
     "command-runner.commands": {
