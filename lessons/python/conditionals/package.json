@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "slidev slides.md",
-    "build": "slidev build slides.md --out ../../dist/python/conditionals",
+    "build": "slidev build slides.md --out ../../../dist/python/conditionals",
     "export": "slidev export slides.md"
   },
   "devDependencies": {

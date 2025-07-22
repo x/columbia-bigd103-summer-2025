@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "slidev slides.md",
-    "build": "slidev build slides.md --out ../../dist/python/operators",
+    "build": "slidev build slides.md --out ../../../dist/python/operators",
     "export": "slidev export slides.md"
   },
   "devDependencies": {
