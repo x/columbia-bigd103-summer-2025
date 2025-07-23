@@ -4,7 +4,7 @@ theme: ../../../shared/theme
 fonts:
     sans: 'IBM Plex Serif'
     mono: 'IBM Plex Mono'
-monaco: true
+monaco: false
 info: |
   Class Number: BIGD103
   Instructor: Mr. Peticolas
@@ -246,7 +246,7 @@ Numbers are mainly of two types - **integers** and **floats**.
 
 - Variables are used to store data.
 - You can assign a value to a variable using the `=` operator.
-```python {monaco-run}
+```python
 name = 'Mr. P'
 age = 99
 print(name)
@@ -261,7 +261,7 @@ print('years old')
 
 You can concatenate strings using the `+` operator.
 
-```python {monaco-run}
+```python
 name = 'Mr. P'
 age = 99
 print(name + ' is ' + str(age) + ' years old')
@@ -273,7 +273,7 @@ print(name + ' is ' + str(age) + ' years old')
 
 Python has a powerful string interpolation capability.
 
-```python {monaco-run}
+```python
 name = 'Mr. P'
 age = 99
 print(f'{name} was {age} years old')
@@ -302,13 +302,13 @@ print(f'{name} was {age} years old')
 
 You can find our the type by using the `type` function.
 
-```python {monaco-run}
+```python
 i = 5
 print(i)
 print(type(i))
 ```
 
-```python {monaco-run}
+```python
 i = 'foo'
 print(i)
 print(type(i))
@@ -339,7 +339,7 @@ layout: two-cols-header-2
 
 Python, at it's core, is a calculator. You can do basic math operations like addition, subtraction, multiplication, and division.
 
-```python {monaco-run}
+```python
 print(2 + 3)  # Addition
 print(5 - 2)  # Subtraction
 print(2 * 3)  # Multiplication
@@ -350,7 +350,7 @@ print(6 / 2)  # Division
 
 It also works on variables
 
-```python {monaco-run}
+```python
 x = 5
 y = 2
 z = x + y
