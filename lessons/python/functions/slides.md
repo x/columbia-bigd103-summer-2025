@@ -9,6 +9,8 @@ info: |
   Class Number: BIGD103
   Instructor: Mr. Peticolas
 transition: slide-left
+vite:
+  configFile: '../../../shared/vite.config.ts'
 addons:
   - slidev-addon-python-runner
 layout: cover
@@ -337,4 +339,4 @@ layout: header-link
 
 # Exercise:<br>Choose Your Own Adventure
 
-TODO
+[https://bigd103.link/text-adventure-game](https://bigd103.link/text-adventure-game)

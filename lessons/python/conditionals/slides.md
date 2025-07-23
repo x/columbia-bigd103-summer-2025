@@ -8,6 +8,8 @@ monaco: true
 info: |
   Class Number: BIGD103
   Instructor: Mr. Peticolas
+vite:
+  configFile: '../../../shared/vite.config.ts'
 addons:
   - slidev-addon-python-runner
 transition: slide-left

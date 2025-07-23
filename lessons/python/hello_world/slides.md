@@ -9,9 +9,12 @@ info: |
   Class Number: BIGD103
   Instructor: Mr. Peticolas
 transition: slide-left
-layout: cover
+vite:
+  configFile: '../../../shared/vite.config.ts'
 addons:
   - slidev-addon-python-runner
+
+layout: cover
 ---
 
 # Hello World
@@ -185,7 +188,6 @@ backgroundSize: contain
 
 ---
 
-
 ## Comments
 
 - Use `#` for comments
@@ -244,7 +246,7 @@ Numbers are mainly of two types - **integers** and **floats**.
 
 - Variables are used to store data.
 - You can assign a value to a variable using the `=` operator.
-```python {monaco-run} {autorun: false}
+```python {monaco-run}
 name = 'Mr. P'
 age = 99
 print(name)
@@ -259,7 +261,7 @@ print('years old')
 
 You can concatenate strings using the `+` operator.
 
-```python {monaco-run} {autorun: false}
+```python {monaco-run}
 name = 'Mr. P'
 age = 99
 print(name + ' is ' + str(age) + ' years old')
@@ -271,7 +273,7 @@ print(name + ' is ' + str(age) + ' years old')
 
 Python has a powerful string interpolation capability.
 
-```python {monaco-run} {autorun: false}
+```python {monaco-run}
 name = 'Mr. P'
 age = 99
 print(f'{name} was {age} years old')
@@ -300,13 +302,13 @@ print(f'{name} was {age} years old')
 
 You can find our the type by using the `type` function.
 
-```python {monaco-run} {autorun: false}
+```python {monaco-run}
 i = 5
 print(i)
 print(type(i))
 ```
 
-```python {monaco-run} {autorun: false}
+```python {monaco-run}
 i = 'foo'
 print(i)
 print(type(i))
@@ -328,19 +330,7 @@ not True
 ```
 
 ---
-
-## Indentation
-
-- Whitespace at the beginning of the line
-- Determines grouping of statements
-- Use four spaces for indentation
-  ```python {monaco-run} {autorun: false}
-  if True:
-      print('True')
-  else:
-      print('False')
-  ```
-
+layout: two-cols-header-2
 ---
 
 ## Some Basic Math
@@ -349,16 +339,18 @@ not True
 
 Python, at it's core, is a calculator. You can do basic math operations like addition, subtraction, multiplication, and division.
 
-```python {monaco-run} {autorun: false}
+```python {monaco-run}
 print(2 + 3)  # Addition
 print(5 - 2)  # Subtraction
 print(2 * 3)  # Multiplication
 print(6 / 2)  # Division
 ```
 
+::right::
+
 It also works on variables
 
-```python {monaco-run} {autorun: false}
+```python {monaco-run}
 x = 5
 y = 2
 z = x + y

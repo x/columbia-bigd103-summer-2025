@@ -9,6 +9,8 @@ info: |
   Class Number: BIGD103
   Instructor: Mr. Peticolas
 transition: slide-left
+vite:
+  configFile: '../../../shared/vite.config.ts'
 addons:
   - slidev-addon-python-runner
 
@@ -140,11 +142,10 @@ x /= 4    # Same as: x = x / 4    (x is now 6.0)
 **Use these to make your code cleaner!**
 
 ---
-layout: iframe-right
-url: https://jupyter.org/try-jupyter/lab/
----
 
 ## Building Something "Useful"
+
+Combining these concepts, we can create a simple (and useful!) program:
 
 ```python
 # Calculate tip for a restaurant bill
@@ -152,6 +153,13 @@ cat_age = int(input("Enter your cat's age in years: "))
 in_human_years = cat_age * 5
 print(f"Your cat is {in_human_years} human years old.")
 ```
+
+Note how we use:
+- `input` to get user input
+- `int` to convert input to an integer
+- `*` to perform arithmetic
+- `f"..."` (f-string) to format the output string
+- `print` to display results
 
 ---
 layout: header-link
