@@ -12,6 +12,14 @@ transition: slide-left
 addons:
   - slidev-addon-python-runner
 
+layout: header-link
+---
+
+# DoNow
+
+[bigd103.link/while-loop-penny](https://bigd103.link/while-loop-penny)
+
+---
 layout: cover
 ---
 
