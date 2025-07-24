@@ -27,9 +27,6 @@ jobs:
       - name: Install root dependencies
         run: nci
 
-      - name: Install lesson dependencies
-        run: nr install
-
       - name: Build all lessons
         run: |
           node --max-old-space-size=6144 $(which nr) build:all \
@@ -40,7 +37,7 @@ jobs:
           cat > dist/index.html << 'EOF'
           <html>
             <header>
-              <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+              <link rel="stylesheet" href="css/pico.fluid.classless.min.css">
             </header>
             <body>
               <h1>Columbia BigD103 - Course Lessons</h1>
