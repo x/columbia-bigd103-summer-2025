@@ -19,14 +19,20 @@ layout: cover
 Writing Reusable Code
 
 ---
+layout: quote
+---
 
 ## What Is a Function?
+
+A function is a way to **group code** that does something specific, so you can use it multiple times without rewriting it.
+
+---
 
 You've already been using functions!
 
 - `print('Hello')` - `print` is a function that displays text
 - `input('Enter name: ')` - `input` is a function that gets user input
-- `int('42')` - `int` is a function that converts a string to an integer
+- `int('42')` - `int` is a function that converts its input to an integer
 - `len('Python')` - `len` is a function that gets the length of a string
 - `range(5)` - `range` is a function that generates a sequence of numbers
 - `randint(1, 10)` - `randint` is a function that generates a random integer
@@ -208,27 +214,15 @@ print(check_age(21))   # Old enough
 
 Once `return` runs, the function stops!
 
+This works the same way that `break` works in loops!
+
 ---
-
-## Default Parameters
-
-Give parameters default values:
-
-```python {monaco-run} {autorun: false}
-def greet(name, greeting="Hello"):
-    print(f"{greeting}, {name}!")
-
-# Use default
-greet("Alice")           # Hello, Alice!
-
-# Override default
-greet("Bob", "Hi")       # Hi, Bob!
-greet("Charlie", "Hey")  # Hey, Charlie!
-```
-
+layout: two-cols-header-2
 ---
 
 ## Variable Scope
+
+::left::
 
 Variables inside functions are **local**:
 
@@ -241,6 +235,19 @@ x = 5  # Different variable!
 calculate()
 print(f"Outside function: x = {x}")
 ```
+
+::right::
+
+But also, functions can access **global** variables:
+
+```python {monaco-run} {autorun: false}
+x = 5  # Global variable
+def calculate():
+    print(f"Inside function: x = {x}")  # Uses global x
+calculate()
+print(f"Outside function: x = {x}")  # Also uses global x
+```
+Until now, all variables were global, but now we see the difference!
 
 ---
 
@@ -276,20 +283,59 @@ display_result(bill, tip)
 ## Common Function Patterns
 
 ```python {monaco-run} {autorun: false}
-# Validation function
+# Validation function, returns True/False
 def is_valid_grade(score):
     return score >= 0 and score <= 100
 
-# Conversion function
+# Conversion function, converts input
 def celsius_to_fahrenheit(celsius):
     return (celsius * 9/5) + 32
 
-# Menu function
+# Menu function, displays options
 def show_menu():
     print("1. Add")
     print("2. Subtract")
     print("3. Quit")
     return input("Choose: ")
+
+# Main function, runs the program
+def main():
+    show_menu()
+    choice = input("Enter your choice: ")
+    if choice == '1':
+        print("You chose Add")
+```
+
+---
+layout: two-cols-header-2
+---
+
+## Order of Functions
+
+Functions can be defined in any order, but they must be defined for you to call them!
+
+::left::
+
+```python {monaco-run} {autorun: false}
+def greet():
+    print("Hello before main!")
+
+def main():
+    greet()
+
+main()
+```
+
+::right::
+
+```python {monaco-run} {autorun: false}
+def main():
+    greet()
+
+def greet():
+    print("Hello after main!")
+
+main()
 ```
 
 ---
@@ -315,6 +361,59 @@ print(f"{temp_c}°C = {temp_f}°F")
 ```
 
 ---
+layout: two-cols-header-2
+---
+
+## Examples from Before
+
+A function that asks if the user wants to continue, returns True/False
+
+::left::
+
+With a loop:
+
+```python
+def should_continue():
+    while True:
+        answer = input("Continue? (yes/no): ")
+        if answer in ['yes', 'no']:
+            return answer == 'yes'
+        print("Please enter 'yes' or 'no'.")
+```
+
+::right::
+
+With recursion:
+
+```python
+def should_continue():
+    answer = input("Continue? (yes/no): ")
+    if answer in ['yes', 'no']:
+        return answer == 'yes'
+    print("Please enter 'yes' or 'no'.")
+    return should_continue()
+```
+
+---
+
+## Recursion
+
+When a function calls itself, we call this **recursion**:
+
+```python {monaco-run} {autorun: false}
+def factorial(n):
+    if n == 0:
+        return 1
+    return n * factorial(n - 1)
+
+print(factorial(5))
+```
+
+In some languages, there is no `while` or `for` loop, so recursion is the only way to repeat code!
+
+If you can solve it with a loop, you can also solve it with recursion.
+
+---
 
 ## Function Best Practices
 
@@ -330,11 +429,10 @@ print(f"{temp_c}°C = {temp_f}°F")
 
 5. Add comments to explain complex logic
 
-
 ---
 layout: header-link
 ---
 
-# Exercise:<br>Choose Your Own Adventure
+# Exercise: Temperature Converter
 
-[https://bigd103.link/text-adventure-game](https://bigd103.link/text-adventure-game)
+[bigd103.link/temp-converter](https://bigd103.link/temp-converter)

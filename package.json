@@ -10,6 +10,8 @@
     "dev:while_loops": "slidev --base /lessons/python/while_loops/ lessons/python/while_loops/slides.md --port 3030",
     "dev:for_loops": "slidev --base /lessons/python/for_loops/ lessons/python/for_loops/slides.md --port 3030",
     "dev:functions": "slidev --base /lessons/python/functions/ lessons/python/functions/slides.md --port 3030",
+    "dev:recap": "slidev --base /lessons/python/recap/ lessons/python/recap/slides.md --port 3030",
+    "dev:data_analysis": "slidev --base /lessons/data_science/data_analysis/ lessons/data_science/data_analysis/slides.md --port 3030",
     "build:intro": "slidev build --base /lessons/introduction/ lessons/introduction/slides.md --out ../../dist/lessons/introduction",
     "build:hello": "slidev build --base /lessons/python/hello_world/ lessons/python/hello_world/slides.md --out ../../../dist/lessons/python/hello_world",
     "build:operators": "slidev build --base /lessons/python/operators/ lessons/python/operators/slides.md --out ../../../dist/lessons/python/operators",
@@ -17,7 +19,9 @@
     "build:while_loops": "slidev build --base /lessons/python/while_loops/ lessons/python/while_loops/slides.md --out ../../../dist/lessons/python/while_loops",
     "build:for_loops": "slidev build --base /lessons/python/for_loops/ lessons/python/for_loops/slides.md --out ../../../dist/lessons/python/for_loops",
     "build:functions": "slidev build --base /lessons/python/functions/ lessons/python/functions/slides.md --out ../../../dist/lessons/python/functions",
-    "build:all": "npm run build:intro && npm run build:hello && npm run build:operators && npm run build:conditionals && npm run build:while_loops && npm run build:for_loops && npm run build:functions",
+    "build:recap": "slidev build --base /lessons/python/recap/ lessons/python/recap/slides.md --out ../../../dist/lessons/python/recap",
+    "build:data_analysis": "slidev build --base /lessons/data_science/data_analysis/ lessons/data_science/data_analysis/slides.md --out ../../../dist/lessons/data_science/data_analysis",
+    "build:all": "npm run build:intro && npm run build:hello && npm run build:operators && npm run build:conditionals && npm run build:while_loops && npm run build:for_loops && npm run build:functions && npm run build:recap && npm run build:data_analysis",
     "export:intro": "slidev export --per-slide --format pdf --output exports/introduction.pdf lessons/introduction/slides.md",
     "export:hello": "slidev export --per-slide --format pdf --output exports/python-hello-world.pdf lessons/python/hello_world/slides.md",
     "export:operators": "slidev export --per-slide --format pdf --output exports/python-operators.pdf lessons/python/operators/slides.md",
@@ -25,6 +29,8 @@
     "export:while_loops": "slidev export --per-slide --format pdf --output exports/python-while-loops.pdf lessons/python/while_loops/slides.md",
     "export:for_loops": "slidev export --per-slide --format pdf --output exports/python-for-loops.pdf lessons/python/for_loops/slides.md",
     "export:functions": "slidev export --per-slide --format pdf --output exports/python-functions.pdf lessons/python/functions/slides.md",
+    "export:recap": "slidev export --per-slide --format pdf --output exports/python-recap.pdf lessons/python/recap/slides.md",
+    "export:data_analysis": "slidev export --per-slide --format pdf --output exports/data-science-data-analysis.pdf lessons/data_science/data_analysis/slides.md",
     "export:all": "npm run export:intro && npm run export:hello && npm run export:operators && npm run export:conditionals && npm run export:while_loops && npm run export:for_loops && npm run export:functions"
   },
   "dependencies": {

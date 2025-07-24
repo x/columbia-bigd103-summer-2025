@@ -217,6 +217,8 @@ for i in range(100):
 print(f"Found {count} even numbers")
 ```
 
+::right::
+
 ### Accumulating
 
 ```python {monaco-run} {autorun: false}
@@ -224,35 +226,6 @@ total = 0
 for num in range(1, 11):
     total = total + num
 print(f"Sum of 1-10: {total}")
-```
-
-::right::
-
-### Finding maximum
-
-```python {monaco-run} {autorun: false}
-numbers = [45, 67, 23, 89, 12]
-biggest = numbers[0]
-for num in numbers:
-    if num > biggest:
-        biggest = num
-print(f"Biggest: {biggest}")
-```
-
-### Parsing Input
-
-```python {monaco-run} {autorun: false}
-answer = False
-while True:
-    response = input("What's your answer? (yes/no): ")
-    if response == "yes":
-        answer = True
-        break
-    elif response == "no":
-        answer = False
-        break
-    else:
-        print("Please type 'yes' or 'no'.")
 ```
 
 ---
@@ -267,17 +240,23 @@ for i in range(1, 4):
     for j in range(1, 4):
         result = i * j
         print(f"{i} × {j} = {result}")
-    print()  # Empty line between sections
+    print("")  # Empty line between sections
 ```
 
 ---
+layout: two-cols-header-2
+---
 
 ## When to Use `while` vs `for`
+
+::left::
 
 **Use `while` when:**
 - You don't know how many times to loop
 - You're waiting for something to happen
 - You need user input validation
+
+::right::
 
 **Use `for` when:**
 - You know exactly how many times to loop
