@@ -28,7 +28,7 @@ jobs:
         run: nci
 
       - name: Install lesson dependencies
-        run: nr install:all
+        run: nr install
 
       - name: Build all lessons
         run: |
@@ -50,7 +50,7 @@ jobs:
           # Find all slides.md files and generate links
           find lessons -name "slides.md" | sort | while read slidepath; do
             # Extract directory path (remove lessons/ prefix and /slides.md suffix)
-            dirpath=$(dirname "$slidepath" | sed 's|^lessons/||')
+            dirpath=$(dirname "$slidepath")
 
             # Convert directory path to title (replace slashes and underscores with spaces, capitalize)
             title=$(echo "$dirpath" | sed 's|/| - |g' | sed 's|_| |g' | sed 's|\b\w|\U&|g')
