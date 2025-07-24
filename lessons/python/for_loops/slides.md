@@ -15,7 +15,7 @@ addons:
 layout: header-link
 ---
 
-# DoNow
+# Do Now
 
 [bigd103.link/while-loop-penny](https://bigd103.link/while-loop-penny)
 
@@ -84,7 +84,6 @@ for num in range(1, 6):
 ## `range()` with Start and Stop
 
 ```python {monaco-run} {autorun: false}
-for num in range(5):
 for i in range(3, 8):
     print(i)  # Prints: 3, 4, 5, 6, 7
 
@@ -124,7 +123,7 @@ for num in range(1, 6):
 
 # Running total (accumulator pattern)
 total = 0
-for price in [10, 25, 15, 30]:
+for price in range(10, 31, 10):
     total = total + price
     print(f"Added ${price}, total is now ${total}")
 ```
@@ -160,9 +159,9 @@ layout: two-cols-header-2
 
 ## Breaking Out of Loops
 
-::left::
-
 Use `break` to exit early:
+
+::right::
 
 ```python {monaco-run} {autorun: false}
 # Find first number divisible by 7
@@ -170,7 +169,11 @@ for num in range(1, 100):
     if num % 7 == 0:
         print(f"Found it: {num}")
         break
+```
 
+::left::
+
+```python
 # Password checker with limited attempts
 for attempt in range(3):
     password = input("Enter password: ")
@@ -179,24 +182,6 @@ for attempt in range(3):
         break
     else:
         print(f"Wrong! {2 - attempt} tries left")
-```
-
-::right::
-
-This is a solution for forever-`while` loops!
-
-```python {monaco-run} {autorun: false}
-print("Do you like chocolate?")
-
-while True:
-    answer = input("Type 'yes' or 'no': ")
-    if answer.lower() == "yes":
-        print("Great! Chocolate is awesome!")
-        break
-    elif answer.lower() == "no":
-        print("Are you sure?")
-    else:
-        print("Please type 'yes' or 'no'.")
 ```
 
 ---
