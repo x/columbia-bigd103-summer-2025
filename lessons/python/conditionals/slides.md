@@ -14,6 +14,13 @@ addons:
   - slidev-addon-python-runner
 transition: slide-left
 
+layout: header-link
+---
+
+# Do Now
+[bigd103.link/student-loan-calculator](https://bigd103.link/student-loan-calculator)
+
+---
 layout: cover
 ---
 
@@ -127,7 +134,7 @@ if age == 18:
 
 What if the condition is False?
 
-```python
+```python {monaco-run} {autorun: false}
 balance = 25.00
 pizza_cost = 30.00
 

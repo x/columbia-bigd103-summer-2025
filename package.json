@@ -17,7 +17,7 @@
     "build:loops": "slidev build --base /lessons/python/loops/ lessons/python/loops/slides.md --out ../../../dist/lessons/python/loops",
     "build:functions": "slidev build --base /lessons/python/functions/ lessons/python/functions/slides.md --out ../../../dist/lessons/python/functions",
 
-    "build:all": "npm run build:intro && npm run build:hello && npm run build:operators && npm run build:conditionals && npm run build:loops && npm run build:functions",
+    "build:all": "npm run build:intro && npm run build:hello && npm run build:operators && npm run build:conditionals && npm run build:loops && npm run build:functions"
   },
   "dependencies": {
     "@slidev/cli": "^51.8.2",
