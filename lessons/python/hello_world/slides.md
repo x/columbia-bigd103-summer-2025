@@ -4,13 +4,13 @@ theme: ../../../shared/theme
 fonts:
     sans: 'IBM Plex Serif'
     mono: 'IBM Plex Mono'
-monaco: false
+monaco: true
 info: |
   Class Number: BIGD103
   Instructor: Mr. Peticolas
 transition: slide-left
-vite:
-  configFile: '../../../shared/vite.config.ts'
+export:
+  perSlide: true
 addons:
   - slidev-addon-python-runner
 
@@ -74,7 +74,7 @@ backgroundSize: contain
 ### Source Code
 - **Human-readable** instructions we write
 - Looks like:
-  ```python
+  ```python {monaco-run} {autorun: false}
   print("Hello World")
   ```
 
@@ -175,19 +175,6 @@ backgroundSize: contain
 
 ---
 
-## Hello World
-
-- The first program you write in any language is usually a "Hello World" program.
-
-- In Python, it is as simple as:
-  ```python
-  print('hello world')
-  ```
-
-- To get a real sense of Python, we should do this in a file.
-
----
-
 ## Comments
 
 - Use `#` for comments
@@ -246,7 +233,7 @@ Numbers are mainly of two types - **integers** and **floats**.
 
 - Variables are used to store data.
 - You can assign a value to a variable using the `=` operator.
-```python
+```python {monaco-run} {autorun: false}
 name = 'Mr. P'
 age = 99
 print(name)
@@ -261,7 +248,7 @@ print('years old')
 
 You can concatenate strings using the `+` operator.
 
-```python
+```python {monaco-run} {autorun: false}
 name = 'Mr. P'
 age = 99
 print(name + ' is ' + str(age) + ' years old')
@@ -273,7 +260,7 @@ print(name + ' is ' + str(age) + ' years old')
 
 Python has a powerful string interpolation capability.
 
-```python
+```python {monaco-run} {autorun: false}
 name = 'Mr. P'
 age = 99
 print(f'{name} was {age} years old')
@@ -302,13 +289,13 @@ print(f'{name} was {age} years old')
 
 You can find our the type by using the `type` function.
 
-```python
+```python {monaco-run} {autorun: false}
 i = 5
 print(i)
 print(type(i))
 ```
 
-```python
+```python {monaco-run} {autorun: false}
 i = 'foo'
 print(i)
 print(type(i))
@@ -339,7 +326,7 @@ layout: two-cols-header-2
 
 Python, at it's core, is a calculator. You can do basic math operations like addition, subtraction, multiplication, and division.
 
-```python
+```python {monaco-run} {autorun: false}
 print(2 + 3)  # Addition
 print(5 - 2)  # Subtraction
 print(2 * 3)  # Multiplication
@@ -350,7 +337,7 @@ print(6 / 2)  # Division
 
 It also works on variables
 
-```python
+```python {monaco-run} {autorun: false}
 x = 5
 y = 2
 z = x + y
