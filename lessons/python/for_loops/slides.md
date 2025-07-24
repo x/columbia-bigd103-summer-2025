@@ -1,5 +1,5 @@
 ---
-title: Data Science and Machine Learning 1 - Python - Loops
+title: Data Science and Machine Learning 1 - Python - For Loops
 theme: ../../../shared/theme
 fonts:
     sans: 'IBM Plex Serif'
