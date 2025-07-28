@@ -343,12 +343,12 @@ main()
 ## Functions Make Code Readable
 
 Without functions:
-```python {monaco-run} {autorun: false}
+```python
 print((float(input("Temperature: ")) * 9/5) + 32)
 ```
 
 With functions:
-```python {monaco-run} {autorun: false}
+```python
 def get_temperature():
     return float(input("Temperature in C: "))
 
