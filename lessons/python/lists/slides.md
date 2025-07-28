@@ -11,6 +11,14 @@ info: |
 transition: slide-left
 addons:
   - slidev-addon-python-runner
+
+layout: header-link
+---
+
+# Do Now
+[bigd103.link/function-challenges](https://bigd103.link/function-challenges)
+
+---
 layout: cover
 ---
 
@@ -153,24 +161,75 @@ print(f"After remove: {grades}")
 
 ---
 
-## More List Methods
+## Adding to a List
+
+We can add to a list using a **method** called `append()`:
 
 ```python {monaco-run} {autorun: false}
 tasks = ["homework", "dishes", "laundry"]
 
-# Remove and return the last item
-completed = tasks.pop()
-print(f"Completed: {completed}")
-print(f"Remaining: {tasks}")
+# Add a new task
+tasks.append("grocery shopping")
 
-# Insert at specific position
-tasks.insert(0, "urgent task")
-print(f"After insert: {tasks}")
-
-# Clear everything
-tasks.clear()
-print(f"After clear: {tasks}")
+print(f"Updated tasks: {tasks}")
 ```
+
+The `append()` **method** is a special function that belongs to the `list` **instance** and modifies it in place.
+
+---
+
+## Classes, Instances, and Methods
+
+### Classes
+- A class is a blueprint that defines what data can be stored and what actions can be performed
+- Example: The `list` class defines how lists work in Python
+
+### Instances
+- An instance is a specific example created from a class, with its own data
+- Example: `tasks = ["homework", "dishes"]` creates an instance of the list class
+
+### Methods
+- A method is a function that belongs to an instance
+- Called using dot notation: `instance.method()`
+- Example: `tasks.append("laundry")` calls the `append` method on our list instance
+
+---
+
+## List Methods
+
+Lists have many more built-in methods to modify them:
+
+```python {monaco-run} {autorun: false}
+# Start with a list
+numbers = [10, 20, 30, 40]
+
+# Remove an item
+numbers.remove(20)
+print(numbers)  # [10, 30, 40]
+
+# Insert at a specific position
+numbers.insert(1, 15)  # Insert 15 at index 1
+print(numbers)  # [10, 15, 30, 40]
+
+# Remove last item and return it
+last = numbers.pop()
+print(f"Removed last item: {last}")  # 40
+print(numbers)  # [10, 15, 30]
+```
+
+---
+
+## List Functions Summary
+
+| Method | What it does | Example |
+|--------|--------------|---------|
+| `append(item)` | Add to end | `lst.append(5)` |
+| `remove(item)` | Remove first occurrence | `lst.remove(5)` |
+| `pop()` | Remove & return last | `last = lst.pop()` |
+| `insert(i, item)` | Insert at position | `lst.insert(0, 5)` |
+| `clear()` | Remove all items | `lst.clear()` |
+| `index(item)` | Find position | `pos = lst.index(5)` |
+| `count(item)` | Count occurrences | `n = lst.count(5)` |
 
 ---
 
@@ -189,10 +248,6 @@ print(letters[:3])   # ['a', 'b', 'c']
 
 # From index 3 to end
 print(letters[3:])   # ['d', 'e', 'f']
-
-# Copy entire list
-copy = letters[:]
-print(copy)
 ```
 
 ---
@@ -205,6 +260,8 @@ layout: two-cols-header-2
 
 **Method 1: Direct iteration**
 
+Best when you just need the values!
+
 ```python {monaco-run} {autorun: false}
 fruits = ["apple", "banana", "cherry"]
 
@@ -212,11 +269,11 @@ for fruit in fruits:
     print(f"I like {fruit}")
 ```
 
-Best when you just need the values!
-
 ::right::
 
 **Method 2: Index iteration**
+
+Use when you need the position too!
 
 ```python {monaco-run} {autorun: false}
 fruits = ["apple", "banana", "cherry"]
@@ -224,8 +281,6 @@ fruits = ["apple", "banana", "cherry"]
 for i in range(len(fruits)):
     print(f"{i}: {fruits[i]}")
 ```
-
-Use when you need the position too!
 
 ---
 
@@ -422,37 +477,11 @@ print(f"Reverse sorted numbers: {reverse_sorted_numbers}")
 
 `sorted` can also sort in reverse order with the `reverse=True` argument.
 
----
-
-## List Functions Summary
-
-| Method | What it does | Example |
-|--------|--------------|---------|
-| `append(item)` | Add to end | `lst.append(5)` |
-| `remove(item)` | Remove first occurrence | `lst.remove(5)` |
-| `pop()` | Remove & return last | `last = lst.pop()` |
-| `insert(i, item)` | Insert at position | `lst.insert(0, 5)` |
-| `clear()` | Remove all items | `lst.clear()` |
-| `index(item)` | Find position | `pos = lst.index(5)` |
-| `count(item)` | Count occurrences | `n = lst.count(5)` |
-
----
-
-## Key Takeaways
-
-1. **Lists store multiple values** in order
-2. **Index from 0** (or use negative for end)
-3. **Lists are mutable** - you can change them
-4. **Use loops** to process all items
-5. **Many methods** to add, remove, and modify
-6. **Can nest lists** for 2D structures
-
-Lists are one of Python's most useful features!
 
 ---
 layout: header-link
 ---
 
-# Exercise: Shopping List Manager
+# Exercise: Secret Messages
 
-[bigd103.link/shopping-list](https://bigd103.link/shopping-list)
+[bigd103.link/secret-messages](https://bigd103.link/secret-messages)
