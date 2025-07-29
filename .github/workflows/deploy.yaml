@@ -90,11 +90,8 @@ jobs:
           # Create .nojekyll file
           touch dist/.nojekyll
           
-          # For each lesson directory, create a simple HTML redirect to the index.html file
-          find dist/lessons -type d -mindepth 1 | while read dir; do
-            if [ -f "$dir/index.html" ]; then
-              echo "Adding redirect file for $dir"
-              cat > "$dir/404.html" << EOF
+          # Create redirect template file
+          cat > redirect_template.html << 'TEMPLATE'
 <!DOCTYPE html>
 <html>
   <head>
@@ -111,7 +108,15 @@ jobs:
     <p><a href="./">Click here if you are not redirected</a></p>
   </body>
 </html>
-EOF
+TEMPLATE
+          
+          # For each lesson directory, create a simple HTML redirect to the index.html file
+          find dist/lessons -type d -mindepth 1 | while read dir; do
+            if [ -f "$dir/index.html" ]; then
+              echo "Adding redirect file for $dir"
+              cp redirect_template.html "$dir/404.html"
+            fi
+          done
             fi
           done
 
