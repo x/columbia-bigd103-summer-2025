@@ -67,10 +67,7 @@ jobs:
             # Convert directory path to title (replace slashes and underscores with spaces, capitalize)
             title=$(echo "$dirpath" | sed 's|/| - |g' | sed 's|_| |g' | sed 's|\b\w|\U&|g')
 
-            # Convert directory path to URL (replace slashes with dashes for build output)
-            urlpath=$(echo "$dirpath" | sed 's|/|-|g')
-
-            echo "<li><a href=\"./$urlpath/\">$title</a></li>" >> dist/index.html
+            echo "<li><a href=\"./$dirpath/\">$title</a></li>" >> dist/index.html
           done
 
           cat >> dist/index.html << 'EOF'
