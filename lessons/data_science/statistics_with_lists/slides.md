@@ -120,7 +120,11 @@ When data is **skewed**, mean and median tell different stories:
 # Right-skewed data (long tail on right)
 salaries = [30, 35, 40, 45, 50, 55, 60, 70, 250]
 
-mean_sal = sum(salaries) / len(salaries)
+salaries_sum = 0
+for salary in salaries:
+    salaries_sum += salary
+
+mean_sal = salaries_sum / len(salaries)
 median_sal = sorted(salaries)[len(salaries)//2]
 
 print("Right-skewed (income-like):")
@@ -207,17 +211,20 @@ $$\sigma = \sqrt{ \frac{1}{N-1} \sum_{i=1}^{N} (x_i - \overline{x})^2 }$$
 values = [2, 4, 4, 4, 5, 5, 7, 9]
 
 # Step 1: Calculate mean
-mean = sum(values) / len(values)
+sum_values = 0
+for x in values:
+    sum_values += x
+mean = sum_values / len(values)
 print(f"Mean: {mean}")
 
 # Step 2: Calculate squared differences
-squared_diffs = []
+sum_squared_diffs = 0
 for x in values:
     diff = x - mean
-    squared_diffs.append(diff ** 2)
+    sum_squared_diffs += diff ** 2
 
 # Step 3: Calculate variance and std dev
-variance = sum(squared_diffs) / (len(values) - 1)
+variance = sum_squared_diffs / (len(values) - 1)
 std_dev = variance ** 0.5
 
 print(f"Standard deviation: {std_dev:.2f}")
@@ -327,4 +334,5 @@ layout: header-link
 ---
 
 # Exercise: Housing Prices
+
 [bigd103.link/housing-prices](https://bigd103.link/housing-prices)

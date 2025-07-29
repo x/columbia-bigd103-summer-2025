@@ -14,7 +14,7 @@ addons:
 layout: cover
 ---
 
-# Data Science Preview
+# Data Analysis
 
 ---
 layout: image-right
@@ -64,7 +64,7 @@ Alice, a Data Scientist, pulls data on visits to her LA/NYC news-focused website
 
 After aggregating by `hour`, `location`, and `screen_size`, she notices spikes in traffic from <span v-mark="{at: 2, color: 'orange', type: 'underline'}">small-screen devices</span> at:
 - New York at <span v-mark="{at: 2, color: 'orange', type: 'underline'}">1pm (EDT)</span>
-- Los Angeles at <span v-mark="{at: 2, color: 'orange', type: 'underline'}">10am (PDT)</span>.
+- Los Angeles at <span v-mark="{at: 2, color: 'orange', type: 'underline'}">10am (EDT)</span>.
 
 </div>
 
@@ -74,7 +74,7 @@ She can **describe** these traffic patterns by the times, screen sizes, and city
 
 </div>
 
-<!-- 
+<!--
 Speaker Notes:
 - Notice the correction: LA would be 10am PDT, not EDT
 - This example shows how descriptive analysis doesn't make assumptions - it just tells us what IS happening
@@ -171,7 +171,7 @@ layout: center
   </div>
 </div>
 
-<!-- 
+<!--
 Speaker Notes:
 - "How Data Happened" by Chris Wiggins and Matthew Jones traces the history of data from the 18th century to today
 - The book shows how data collection started as a tool of empire and evolved into today's data science
@@ -189,7 +189,7 @@ image: 18th_century_crime_statistics.jpg
 - The word "statistics" initially meant **knowledge of the state** — counting births, deaths, taxes, etc.
 - In the beginning, statistics was really just about collecting **datasets**.
 
-<!-- 
+<!--
 Speaker Notes:
 - The word "statistics" comes from the German "Statistik" - literally "state arithmetic"
 - Early statistics were tools of empire - Napoleon's armies carried statisticians to count resources in conquered territories
@@ -209,6 +209,68 @@ backgroundSize: contain
 
 - The goal of **describing** a dataset is to understand its key characteristics—like typical values, spread, and the relationships among variables.
 
+
+---
+layout: two-cols-header
+
+---
+
+## Kinds of Data
+
+::left::
+
+#### Nominal
+Labels or categories<br>(city, gender)
+
+#### Ordinal
+Nominal but with order<br>(ratings, t-shirt sizes)
+
+#### Continuous
+Numeric values that **can** be divided into smaller fractional values<br>(e.g., height, weight)
+
+#### Discrete
+Numeric values that **cannot** be divided<br>(e.g., number of children)
+
+::right::
+
+<br><br><br>
+
+```mermaid
+flowchart TD
+   Data --> Qualitative & Quantitative
+   Qualitative --> Nominal & Ordinal
+   Quantitative --> Continuous & Discrete
+```
+
+---
+layout: statement
+---
+
+## What Kind of Data is Color?
+Nominal?, Ordinal?, Continuous?, Discrete?
+
+---
+layout: image-right
+image: image-4.png
+backgroundSize: contain
+---
+
+## Color
+
+- The statistician says it's "Nominal"
+- The designer says it's "Ordinal"
+- The computer scientist says it's "Discrete"
+- The painter says it's "Continuous"
+
+_Interpretation of a piece of data depends a lot on the context._
+
+---
+layout: section
+hideInToc: true
+---
+
+# Central Tendency
+
 ---
 layout: image-right
 image: adolphe_quetelet.jpg
@@ -220,10 +282,10 @@ image: adolphe_quetelet.jpg
 
 - Adolphe Quetelet was a Belgian astronomer.
 - In 1835, he published "Sur l'homme", applying astr. methods to human data.
-- He discovered that human characteristics (height) followed a "normal distribution"
+- He discovered that human characteristics height followed a "normal distribution"
 - This inspired Quetelet to apply the same averaging techniques to human and social data, such as crime rates and physical measurements, laying the groundwork for ideas like the "Average Man" and BMI.
 
-<!-- 
+<!--
 Speaker Notes:
 - Quetelet's key insight: human variation follows the same mathematical patterns as astronomical measurement errors
 - He believed there was an ideal "average man" and deviations were like errors from this ideal
@@ -244,7 +306,7 @@ The average man, indeed, is in a nation what the centre of gravity is in a \[cel
 
 ― Adolphe Quetelet, A Treatise on Man and the Development of His Faculties
 
-<!-- 
+<!--
 Speaker Notes:
 - Note the physics metaphor - Quetelet saw society as a mechanical system with laws like astronomy
 - The "average man" concept was used to define what was "normal" vs "deviant"
@@ -300,6 +362,13 @@ backgroundSize: contain
 - Highest Score: 35
 - Distribution Range: 27
 
+
+---
+layout: image
+image: image-5.png
+backgroundSize: contain
+---
+
 ---
 layout: image-right
 image: standard_deviation_diagram.svg.png
@@ -330,13 +399,34 @@ Also known as the **Bell Curve** or **Gaussian Distribution**:
 - Mean = Median = Mode.
 - Approximately 68% of data within 1σ, 95% within 2σ, and 99.7% within 3σ from the mean.
 
-<!-- 
+<!--
 Speaker Notes:
 - Named after Carl Friedrich Gauss, though discovered independently by many
 - The "68-95-99.7 rule" is fundamental to statistics
 - Many natural phenomena follow normal distributions (heights, test scores, measurement errors)
 - But beware: not everything is normally distributed! (income, city sizes follow power laws)
 -->
+
+---
+layout: image
+image: image-8.png
+backgroundSize: contain
+---
+
+
+---
+layout: image-right
+image: min_max_5th_95th.png
+backgroundSize: contain
+---
+
+## Range and Percentiles
+
+- **Minimum / Maximum**: The smallest and largest values in the dataset.
+- **Range**: max - min.
+- **5th & 95th Percentiles**: Often used to ignore extreme outliers and capture where most data lies.
+- **Quantiles**: Another name for percentiles (just divide by 100 to convert).
+- **Interquartile Range (IQR)**: The range between the 25th and 75th percentiles.
 
 ---
 layout: image-right
@@ -356,7 +446,7 @@ image: eugenics_birth.jpg
 - Believed intelligence and ability were primarily inherited.
 - Coined the term **"eugenics"** to describe the effort to "improve" human genetics.
 
-<!-- 
+<!--
 Speaker Notes:
 - Galton's statistical innovations were groundbreaking, but his motivations were deeply problematic
 - He invented correlation to prove that "genius" ran in families (ignoring privilege and opportunity)
@@ -376,7 +466,7 @@ The natural qualifications of our race are no greater than they used to be in se
 
 ~ Francis Galton
 
-<!-- 
+<!--
 Speaker Notes:
 - This quote shows Galton's worldview - he believed in racial hierarchy and "improvement"
 - He ignored how social conditions, education, and opportunity shape outcomes
@@ -402,7 +492,7 @@ Where $m$ is the slope and $b$ is the intercept.
 
 _Galton originally studied how children's heights regressed toward the mean height of the population._
 
-<!-- 
+<!--
 Speaker Notes:
 - Galton noticed tall parents tended to have tall children, but not AS tall as the parents
 - He called this "regression to mediocrity" - we now call it "regression to the mean"
@@ -467,7 +557,7 @@ backgroundSize: contain
 
 It's easy to find **spurious correlations** that are not meaningful.
 
-<!-- 
+<!--
 Speaker Notes:
 - Classic example: ice cream sales and drowning deaths are correlated (both increase in summer)
 - The hidden variable is temperature/season - it causes both

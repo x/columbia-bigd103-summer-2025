@@ -19,6 +19,29 @@ layout: header-link
 [bigd103.link/function-challenges](https://bigd103.link/function-challenges)
 
 ---
+layout: image-right
+image: image.png
+---
+
+## Deploy Your Game
+
+1. Create a Github Account
+2. Go to [github.com/x/text-adventure-game](https://github.com/x/text-adventure-game)
+3. Click "Fork" to create your own copy
+4. Enable "Github Pages" in your settings
+5. Copy your game into the `game.py` file
+
+<br>
+
+### What is Github
+
+- Like Google Docs for code
+- Built on top of Git, a version control system
+- A place to share and showcase projects
+- Where developers collaborate worldwide
+- **A simple way to host static websites**
+
+---
 layout: cover
 ---
 
@@ -310,7 +333,7 @@ print(f"{count} numbers are over 20")
 
 Start with an empty list and grow it:
 
-```python {monaco-run} {autorun: false}
+```python
 # Collect user input
 shopping_list = []
 
@@ -477,11 +500,10 @@ print(f"Reverse sorted numbers: {reverse_sorted_numbers}")
 
 `sorted` can also sort in reverse order with the `reverse=True` argument.
 
-
 ---
 layout: header-link
 ---
 
-# Exercise: Secret Messages
+# Exercise: Shopping List App
 
-[bigd103.link/secret-messages](https://bigd103.link/secret-messages)
+[bigd103.link/shopping-list](https://bigd103.link/shopping-list)

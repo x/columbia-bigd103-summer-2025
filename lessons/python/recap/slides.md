@@ -251,7 +251,7 @@ layout: two-cols-header-2
 - Waiting for user input
 - Checking a condition that might change
 
-```python {monaco-run} {autorun: false}
+```python
 # While: unknown repetitions
 while input("Again? ") == "yes":
     print("Going again!")
@@ -304,7 +304,7 @@ print(f"5 + 3 = {result}")
 
 ## Function Patterns We've Learned
 
-```python {monaco-run} {autorun: false}
+```python
 # Get input with validation
 def get_positive_number():
     while True:
