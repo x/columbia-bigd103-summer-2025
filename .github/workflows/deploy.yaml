@@ -29,7 +29,23 @@ jobs:
 
       - name: Build all lessons
         run: |
-          npm run build:all --base /${{github.event.repository.name}}/
+          # Create dist directory
+          mkdir -p dist
+          
+          # Find all slides.md files and build them
+          find lessons -name "slides.md" | sort | while read slidepath; do
+            # Extract directory path (remove /slides.md suffix)
+            dirpath=$(dirname "$slidepath")
+            
+            # Create output directory path
+            outdir="dist/$dirpath"
+            
+            # Determine the base URL path
+            basepath="/${{github.event.repository.name}}/$dirpath/"
+            
+            echo "Building $slidepath to $outdir with base $basepath"
+            npx slidev build --base "$basepath" "$slidepath" --out "$outdir"
+          done
 
       - name: Generate index.html
         run: |
