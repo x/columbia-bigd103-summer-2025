@@ -94,24 +94,24 @@ jobs:
           find dist/lessons -type d -mindepth 1 | while read dir; do
             if [ -f "$dir/index.html" ]; then
               echo "Adding redirect file for $dir"
-              cat > "$dir/404.html" << 'EOF'
-              <!DOCTYPE html>
-              <html>
-                <head>
-                  <meta charset="utf-8">
-                  <title>Redirecting...</title>
-                  <script>
-                    // Handle SPA routing - redirect to index.html with the same path
-                    window.location.href = './';
-                  </script>
-                  <meta http-equiv="refresh" content="0; url=./">
-                </head>
-                <body>
-                  <p>Redirecting to presentation...</p>
-                  <p><a href="./">Click here if you are not redirected</a></p>
-                </body>
-              </html>
-              EOF
+              cat > "$dir/404.html" << EOF
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
+    <script>
+      // Handle SPA routing - redirect to index.html with the same path
+      window.location.href = './';
+    </script>
+    <meta http-equiv="refresh" content="0; url=./">
+  </head>
+  <body>
+    <p>Redirecting to presentation...</p>
+    <p><a href="./">Click here if you are not redirected</a></p>
+  </body>
+</html>
+EOF
             fi
           done
 
