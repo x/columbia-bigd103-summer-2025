@@ -24,7 +24,7 @@
     "export:recap": "slidev export --per-slide --format pdf --timeout 60000 --output exports/python-recap.pdf lessons/python/recap/slides.md",
     "export:data_analysis": "slidev export --per-slide --format pdf --output exports/data-science-data-analysis.pdf lessons/data_science/data_analysis/slides.md",
     "export:lists": "slidev export --per-slide --timeout 60000 --format pdf --output exports/python-lists.pdf lessons/python/lists/slides.md",
-    "export:statistics_with_lists": "slidev export --per-slide --format pdf --output exports/data-science-statistics-with-lists.pdf lessons/data_science/statistics_with_lists/slides.md",
+    "export:statistics_with_lists": "slidev export --per-slide --format pdf --output exports/data-science-statistics-with-lists.pdf lessons/data_science/statistics_with_lists/slides.md"
   },
   "dependencies": {
     "@slidev/cli": "^52.0.0",
