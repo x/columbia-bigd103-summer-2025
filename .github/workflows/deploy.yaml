@@ -37,18 +37,25 @@ jobs:
             # Extract directory path (remove /slides.md suffix)
             dirpath=$(dirname "$slidepath")
             
-            # Create output directory path
+            # Keep the original dirpath for output directory to maintain folder structure
             outdir="dist/$dirpath"
             
-            # Determine the base URL path
+            # Determine the base URL path - also keep the original path structure
             basepath="/${{github.event.repository.name}}/$dirpath/"
             
             echo "Building $slidepath to $outdir with base $basepath"
+            mkdir -p "$outdir"
             npx slidev build --base "$basepath" "$slidepath" --out "$outdir"
           done
 
       - name: Generate index.html
         run: |
+          # Create CSS directory
+          mkdir -p dist/css
+          
+          # Download PicoCSS
+          curl -s https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.fluid.classless.min.css > dist/css/pico.fluid.classless.min.css
+          
           cat > dist/index.html << 'EOF'
           <html>
             <header>
@@ -61,12 +68,13 @@ jobs:
 
           # Find all slides.md files and generate links
           find lessons -name "slides.md" | sort | while read slidepath; do
-            # Extract directory path (remove lessons/ prefix and /slides.md suffix)
+            # Extract directory path (remove /slides.md suffix)
             dirpath=$(dirname "$slidepath")
 
             # Convert directory path to title (replace slashes and underscores with spaces, capitalize)
             title=$(echo "$dirpath" | sed 's|/| - |g' | sed 's|_| |g' | sed 's|\b\w|\U&|g')
 
+            # Use the original directory structure for URLs
             echo "<li><a href=\"./$dirpath/\">$title</a></li>" >> dist/index.html
           done
 

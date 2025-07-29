@@ -3,6 +3,7 @@
   "type": "module",
   "private": true,
   "scripts": {
+    "build:all": "echo 'Build is now handled in GitHub Actions'",
     "dev:intro": "slidev --base /lessons/introduction/ lessons/introduction/slides.md --port 3030",
     "dev:hello": "slidev --base /lessons/python/hello_world/ lessons/python/hello_world/slides.md --port 3030",
     "dev:operators": "slidev --base /lessons/python/operators/ lessons/python/operators/slides.md --port 3030",
