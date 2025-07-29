@@ -116,8 +116,6 @@ jobs:
               cp redirect_template.html "$dir/404.html"
             fi
           done
-            fi
-          done
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
