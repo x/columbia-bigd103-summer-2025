@@ -11,7 +11,15 @@ info: |
 transition: slide-left
 addons:
   - slidev-addon-python-runner
-
+python:
+  prelude: |
+    import math
+    import pandas as pd
+  loadPackagesFromImports: true
+  loadOptions:
+    fullStdLib: false
+    packages:
+      - pandas
 layout: cover
 ---
 
@@ -74,8 +82,8 @@ backgroundSize: contain
 Imagine you have books data with multiple genres and quantities:
 
 ```python
-# List of (date, product, amount) tuples
-books = [
+# Create DataFrame from list of dictionaries
+books_data = [
     {"id": 1, "genre": "adventure", "qty": 4, "price": 11.90},
     {"id": 2, "genre": "fantasy", "qty": 5, "price": 8.49},
     {"id": 3, "genre": "romance", "qty": 2, "price": 9.99},
@@ -91,7 +99,6 @@ books = [
 layout: quote
 ---
 
-
 ## Group By
 
 1. **Group** data into groups based on a common attribute.
@@ -103,20 +110,13 @@ image: image-1.png
 backgroundSize: contain
 ---
 
-## Grouping w/ Dictionaries
+## Grouping w/ Pandas
 
 ```python {monaco-run} {autorun: false}
-books = [{"id": 1, "genre": "adventure", "qty": 4, "price": 11.90}, {"id": 2, "genre": "fantasy", "qty": 5, "price": 8.49}, {"id": 3, "genre": "romance", "qty": 2, "price": 9.99}, {"id": 4, "genre": "fantasy", "qty": 3, "price": 7.99}, {"id": 5, "genre": "adventure", "qty": 3, "price": 9.99}, {"id": 6, "genre": "romance", "qty": 1, "price": 5.88}]
+books_df = pd.DataFrame([{"id": 1, "genre": "adventure", "qty": 4, "price": 11.90}, {"id": 2, "genre": "fantasy", "qty": 5, "price": 8.49}, {"id": 3, "genre": "romance", "qty": 2, "price": 9.99}, {"id": 4, "genre": "fantasy", "qty": 3, "price": 7.99}, {"id": 5, "genre": "adventure", "qty": 3, "price": 9.99}, {"id": 6, "genre": "romance", "qty": 1, "price": 5.88}])
 
 # Group by genre and sum quantities
-qty_by_genre = {}
-for book in books:
-    genre = book["genre"]
-    qty = book["qty"]
-    if genre in qty_by_genre:
-        qty_by_genre[genre] += qty
-    else:
-        qty_by_genre[genre] = qty
+qty_by_genre = books_df.groupby('genre')['qty'].sum()
 
 print("Total quantities by genre:")
 for genre, total_qty in qty_by_genre.items():
@@ -129,22 +129,17 @@ image: image.png
 backgroundSize: contain
 ---
 
-## Grouping w/ Dictionaries
+## Grouping w/ Pandas
 
 ```python {monaco-run} {autorun: false}
-books = [{"id": 1, "genre": "adventure", "qty": 4, "price": 11.90}, {"id": 2, "genre": "fantasy", "qty": 5, "price": 8.49}, {"id": 3, "genre": "romance", "qty": 2, "price": 9.99}, {"id": 4, "genre": "fantasy", "qty": 3, "price": 7.99}, {"id": 5, "genre": "adventure", "qty": 3, "price": 9.99}, {"id": 6, "genre": "romance", "qty": 1, "price": 5.88}]
+books_df = pd.DataFrame([{"id": 1, "genre": "adventure", "qty": 4, "price": 11.90}, {"id": 2, "genre": "fantasy", "qty": 5, "price": 8.49}, {"id": 3, "genre": "romance", "qty": 2, "price": 9.99}, {"id": 4, "genre": "fantasy", "qty": 3, "price": 7.99}, {"id": 5, "genre": "adventure", "qty": 3, "price": 9.99}, {"id": 6, "genre": "romance", "qty": 1, "price": 5.88}])
 
-# Group by genre
-books_by_genre = {}
-for book in books:
-    genre = book["genre"]
-    if genre not in books_by_genre:
-        books_by_genre[genre] = []
-    books_by_genre[genre].append(book["price"])
+# Group by genre and calculate average price
+avg_price_by_genre = \
+    books_df.groupby('genre')['price'].mean()
 
-# Calculate averages
-for genre, prices in books_by_genre.items():
-    avg_price = sum(prices) / len(prices)
+# Print results
+for genre, avg_price in avg_price_by_genre.items():
     print(f"  {genre}: ${avg_price:.2f}")
 ```
 
@@ -152,21 +147,22 @@ for genre, prices in books_by_genre.items():
 
 ## Group By Pattern
 
-The basic pattern for grouping:
+The basic pattern for grouping in pandas:
 
 ```python
-# Pattern for collecting values
-grouped = {}
-for item in data:
-    key = # extract grouping key
-    value = # extract value to collect
-    if key not in grouped:
-        grouped[key] = []
-    grouped[key].append(value)
+# Basic groupby pattern
+grouped = df.groupby('key_column')['value_column'].agg_function()
 
-# Then analyze each group
-for key, values in grouped.items():
-    # Calculate statistics on values
+# Multiple aggregations
+grouped = df.groupby('key_column').agg({
+    'value_column1': 'sum',
+    'value_column2': 'mean',
+    'value_column3': ['min', 'max']
+})
+
+# Then analyze results
+for key, value in grouped.items():
+    # Process each group's result
 ```
 
 This pattern solves countless real-world problems!
@@ -182,19 +178,13 @@ layout: two-cols-header-2
 We can group by single attributes:
 
 ```python {monaco-run} {autorun: false}
-temps = [{"city": "NYC", "month": "Jan", "temp": 32}, {"city": "NYC", "month": "Jan", "temp": 35}, {"city": "NYC", "month": "Jan", "temp": 28}, {"city": "NYC", "month": "Feb", "temp": 38}, {"city": "NYC", "month": "Feb", "temp": 42}, {"city": "NYC", "month": "Feb", "temp": 35}, {"city": "LA", "month": "Jan", "temp": 65}, {"city": "LA", "month": "Jan", "temp": 68}, {"city": "LA", "month": "Jan", "temp": 70}, {"city": "LA", "month": "Feb", "temp": 67}, {"city": "LA", "month": "Feb", "temp": 72}, {"city": "LA", "month": "Feb", "temp": 69}]
+temps_df = pd.DataFrame([{"city": "NYC", "month": "Jan", "temp": 32}, {"city": "NYC", "month": "Jan", "temp": 35}, {"city": "NYC", "month": "Jan", "temp": 28}, {"city": "NYC", "month": "Feb", "temp": 38}, {"city": "NYC", "month": "Feb", "temp": 42}, {"city": "NYC", "month": "Feb", "temp": 35}, {"city": "LA", "month": "Jan", "temp": 65}, {"city": "LA", "month": "Jan", "temp": 68}, {"city": "LA", "month": "Jan", "temp": 70}, {"city": "LA", "month": "Feb", "temp": 67}, {"city": "LA", "month": "Feb", "temp": 72}, {"city": "LA", "month": "Feb", "temp": 69}])
 
-# Group by city AND month
-monthly_temps = {}
-for entry in temps:
-    city = entry["city"]
-    if city not in monthly_temps:
-        monthly_temps[city] = []
-    monthly_temps[city].append(entry["temp"])
+# Group by city
+city_avg = temps_df.groupby('city')['temp'].mean()
 
 # Average per city
-for city, temps_list in monthly_temps.items():
-    temp_avg = sum(temps_list) / len(temps_list)
+for city, temp_avg in city_avg.items():
     print(f"{city}: {temp_avg:.1f}°F")
 ```
 
@@ -203,20 +193,16 @@ for city, temps_list in monthly_temps.items():
 We can group by multiple attributes:
 
 ```python {monaco-run} {autorun: false}
-temps = [{"city": "NYC", "month": "Jan", "temp": 32}, {"city": "NYC", "month": "Jan", "temp": 35}, {"city": "NYC", "month": "Jan", "temp": 28}, {"city": "NYC", "month": "Feb", "temp": 38}, {"city": "NYC", "month": "Feb", "temp": 42}, {"city": "NYC", "month": "Feb", "temp": 35}, {"city": "LA", "month": "Jan", "temp": 65}, {"city": "LA", "month": "Jan", "temp": 68}, {"city": "LA", "month": "Jan", "temp": 70}, {"city": "LA", "month": "Feb", "temp": 67}, {"city": "LA", "month": "Feb", "temp": 72}, {"city": "LA", "month": "Feb", "temp": 69}]
+temps_df = pd.DataFrame([{"city": "NYC", "month": "Jan", "temp": 32}, {"city": "NYC", "month": "Jan", "temp": 35}, {"city": "NYC", "month": "Jan", "temp": 28}, {"city": "NYC", "month": "Feb", "temp": 38}, {"city": "NYC", "month": "Feb", "temp": 42}, {"city": "NYC", "month": "Feb", "temp": 35}, {"city": "LA", "month": "Jan", "temp": 65}, {"city": "LA", "month": "Jan", "temp": 68}, {"city": "LA", "month": "Jan", "temp": 70}, {"city": "LA", "month": "Feb", "temp": 67}, {"city": "LA", "month": "Feb", "temp": 72}, {"city": "LA", "month": "Feb", "temp": 69}])
 
 # Group by city AND month
-monthly_temps = {}
-for entry in temps:
-    key = f"{entry["city"]}-{entry["month"]}"  # Combine keys
-    if key not in monthly_temps:
-        monthly_temps[key] = []
-    monthly_temps[key].append(entry["temp"])
+monthly_temps = \
+    temps_df.groupby(['city', 'month'])['temp'].mean()
 
 # Average per city per month
-for key, temps_list in monthly_temps.items():
-    temp_avg = sum(temps_list) / len(temps_list)
-    print(f"{key}: {temp_avg:.1f}°F")
+for city_and_month, temp_avg in monthly_temps.items():
+    city, month = city_and_month  # NEW SYNTAX: unpacking
+    print(f"{city}-{month}: {temp_avg:.1f}°F")
 ```
 
 ---
@@ -225,20 +211,15 @@ for key, temps_list in monthly_temps.items():
 
 ```python {monaco-run} {autorun: false}
 # Sales data: (salesperson, quarter, amount)
-sales = [{"name": "Alice", "quarter": "Q1", "amount": 50000}, {"name": "Alice", "quarter": "Q1", "amount": 30000}, {"name": "Alice", "quarter": "Q2", "amount": 45000}, {"name": "Bob", "quarter": "Q1", "amount": 40000}, {"name": "Bob", "quarter": "Q2", "amount": 60000}, {"name": "Bob", "quarter": "Q2", "amount": 35000}, {"name": "Charlie", "quarter": "Q1", "amount": 55000}, {"name": "Charlie", "quarter": "Q2", "amount": 50000}]
+sales_df = pd.DataFrame([{"name": "Alice", "quarter": "Q1", "amount": 50000}, {"name": "Alice", "quarter": "Q1", "amount": 30000}, {"name": "Alice", "quarter": "Q2", "amount": 45000}, {"name": "Bob", "quarter": "Q1", "amount": 40000}, {"name": "Bob", "quarter": "Q2", "amount": 60000}, {"name": "Bob", "quarter": "Q2", "amount": 35000}, {"name": "Charlie", "quarter": "Q1", "amount": 55000}, {"name": "Charlie", "quarter": "Q2", "amount": 50000}])
 
-person_sales = {}
-for entry in sales:
-    person = entry["name"]
-    amount = entry["amount"]
-    if person not in person_sales:
-        person_sales[person] = []
-    person_sales[person].append(amount)
+# Calculate multiple statistics at once
+person_stats = sales_df.groupby('name')['amount'].agg(['sum', 'mean', 'max'])
 
-for person, amounts in person_sales.items():
-    total = sum(amounts)
-    avg = total / len(amounts)
-    max_sale = max(amounts)
+for person, stats in person_stats.iterrows():
+    total = stats['sum']
+    avg = stats['mean']
+    max_sale = stats['max']
     print(f"{person}: Total=${total}, Avg=${avg:.0f}, Max=${max_sale}")
 ```
 
@@ -247,19 +228,17 @@ for person, amounts in person_sales.items():
 ## Group By Functions
 
 ```python {monaco-run} {autorun: false}
-sales = [{"name": "Alice", "quarter": "Q1", "amount": 50000}, {"name": "Alice", "quarter": "Q1", "amount": 30000}, {"name": "Alice", "quarter": "Q2", "amount": 45000}, {"name": "Bob", "quarter": "Q1", "amount": 40000}, {"name": "Bob", "quarter": "Q2", "amount": 60000}, {"name": "Bob", "quarter": "Q2", "amount": 35000}, {"name": "Charlie", "quarter": "Q1", "amount": 55000}, {"name": "Charlie", "quarter": "Q2", "amount": 50000}]
+import pandas as pd
 
-def group_by_sum(data, key_key, value_key):
-    grouped = {}
-    for item in data:
-        key = item[key_key]
-        value = item[value_key]
-        if key not in grouped:
-            grouped[key] = 0
-        grouped[key] += value
-    return grouped
+sales_df = pd.DataFrame([{"name": "Alice", "quarter": "Q1", "amount": 50000}, {"name": "Alice", "quarter": "Q1", "amount": 30000}, {"name": "Alice", "quarter": "Q2", "amount": 45000}, {"name": "Bob", "quarter": "Q1", "amount": 40000}, {"name": "Bob", "quarter": "Q2", "amount": 60000}, {"name": "Bob", "quarter": "Q2", "amount": 35000}, {"name": "Charlie", "quarter": "Q1", "amount": 55000}, {"name": "Charlie", "quarter": "Q2", "amount": 50000}])
 
-grouped_sales = group_by_sum(sales, "name", "amount")
+def custom_agg(df, group_col, value_col, agg_func):
+    """Custom groupby wrapper function"""
+    return df.groupby(group_col)[value_col].agg(agg_func)
+
+# Use built-in sum
+grouped_sales = custom_agg(sales_df, 'name', 'amount', 'sum')
+
 for person, total in grouped_sales.items():
     print(f"{person}: Total=${total}")
 ```
@@ -272,40 +251,35 @@ layout: two-cols-header-2
 
 ::left::
 
-- **Total**: Sum of values per group
-- **Mean**: Average value per group
-- **Median**: Middle value per group
-- **Mode**: Most frequent value per group
-- **Count**: Number of items per group
-- **Standard Deviation**: Spread of values per group
-- **Max/Min**: Highest/lowest value per group
-- **Quantiles**: Percentile values per group
-- **Custom Functions**: Any function that takes a list and returns a single value
+- **sum**: Sum of values per group
+- **mean**: Average value per group
+- **median**: Middle value per group
+- **mode**: Most frequent value per group
+- **count**: Number of items per group
+- **std**: Standard deviation per group
+- **max/min**: Highest/lowest value per group
+- **quantile**: Percentile values per group
+- **Custom Functions**: Any function that takes a Series and returns a single value
 
 ::right::
 
 ```python {monaco-run} {autorun: false}
-sales = [{"name": "Alice", "quarter": "Q1", "amount": 50000}, {"name": "Alice", "quarter": "Q1", "amount": 30000}, {"name": "Alice", "quarter": "Q2", "amount": 45000}, {"name": "Bob", "quarter": "Q1", "amount": 40000}, {"name": "Bob", "quarter": "Q2", "amount": 60000}, {"name": "Bob", "quarter": "Q2", "amount": 35000}, {"name": "Charlie", "quarter": "Q1", "amount": 55000}, {"name": "Charlie", "quarter": "Q2", "amount": 50000}]
+import pandas as pd
 
-def group_by(data, key_key, value_key, agg_func):
-    grouped = {}
-    for item in data:
-        key = item[key_key]
-        value = item[value_key]
-        if key not in grouped:
-            grouped[key] = []
-        grouped[key].append(value)
-    result = {}
-    for key, values in grouped.items():
-        result[key] = agg_func(values)
-    return result
+sales_df = pd.DataFrame([{"name": "Alice", "quarter": "Q1", "amount": 50000}, {"name": "Alice", "quarter": "Q1", "amount": 30000}, {"name": "Alice", "quarter": "Q2", "amount": 45000}, {"name": "Bob", "quarter": "Q1", "amount": 40000}, {"name": "Bob", "quarter": "Q2", "amount": 60000}, {"name": "Bob", "quarter": "Q2", "amount": 35000}, {"name": "Charlie", "quarter": "Q1", "amount": 55000}, {"name": "Charlie", "quarter": "Q2", "amount": 50000}])
 
-def my_avg(values):
-    return sum(values) / len(values)
+# Multiple aggregations including custom function
+def my_range(series):
+    return series.max() - series.min()
 
-avg_sales = group_by(sales, "name", "amount", my_avg)
-for person, average in avg_sales.items():
-    print(f"{person}: Average=${average:.2f}")
+person_aggs = sales_df.groupby('name')['amount'].agg([
+    'mean',
+    'count',
+    ('range', my_range)  # Custom function with name
+])
+
+for person, stats in person_aggs.iterrows():
+    print(f"{person}: Average=${stats['mean']:.2f}, Count={stats['count']}, Range=${stats['range']}")
 ```
 
 ---
@@ -390,4 +364,4 @@ layout: header-link
 ---
 
 # Exercise: Airbnb Analysis
-[bigd103.link/airbnb-analysis](https://bigd103.link/airbnb-analysis)
+[bigd103.link/airbnb-analysis-pandas](https://bigd103.link/airbnb-analysis-pandas)
