@@ -309,6 +309,51 @@ for person, average in avg_sales.items():
 ```
 
 ---
+layout: section
+---
+
+# Examples
+
+---
+layout: image-right
+image: image-4.png
+backgroundSize: contain
+---
+
+## Political Voting
+
+### Approach
+
+- GROUP BY demographic (age, gender, location)
+- AGGREGATE sum of counts
+
+### Application
+
+- 2020 demographics we're used to target ads in 2024 election to target improving turnout
+- Policy is often driven by demographics
+
+<small>https://apnews.com/article/election-harris-trump-women-latinos-black-voters-0f3fbda3362f3dcfe41aa6b858f22d12</small>
+
+---
+layout: image-right
+image: 12seasons-nyc-2025-07-29.png
+backgroundSize: contain
+---
+
+## 12seasons.nyc
+
+### Grouping for Baseline
+
+- 60 years of hour-by-hour NYC weather data
+- **GROUP BY** hour and day-of-year
+- **AGGREGATE** median temperature, stddev of temperature
+
+### Analysis Against Baseline
+
+- On page load, fetch the current hour, day-of-year, and temperature.
+- Depending on how many standard deviations above or below the median the current temperature is, update pointer.
+
+---
 layout: two-cols-header-2
 ---
 
@@ -346,6 +391,3 @@ layout: header-link
 
 # Exercise: Airbnb Analysis
 [bigd103.link/airbnb-analysis](https://bigd103.link/airbnb-analysis)
-
-
-
