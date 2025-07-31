@@ -29,7 +29,7 @@ jobs:
 
       - name: Build all lessons
         run: |
-          # Create dist directory
+          # Create main dist directory
           mkdir -p dist
           
           # Find all slides.md files and build them
@@ -37,16 +37,29 @@ jobs:
             # Extract directory path (remove /slides.md suffix)
             dirpath=$(dirname "$slidepath")
             
-            # Keep the original dirpath for output directory to maintain folder structure
-            outdir="dist/$dirpath"
-            
-            # Determine the base URL path - also keep the original path structure
+            # Determine the base URL path
             basepath="/${{github.event.repository.name}}/$dirpath/"
             
-            echo "Building $slidepath to $outdir with base $basepath"
-            mkdir -p "$outdir"
-            npx slidev build --base "$basepath" "$slidepath" --out "$outdir"
+            echo "Building $slidepath with base $basepath"
+            
+            # Change to the lesson directory and build there
+            cd "$dirpath"
+            npx slidev build --base "$basepath" slides.md
+            
+            # Move the built files to the correct location in main dist
+            target_dir="../../dist/$dirpath"
+            mkdir -p "$target_dir"
+            cp -r dist/* "$target_dir/"
+            rm -rf dist
+            
+            # Return to root directory
+            cd - > /dev/null
           done
+          
+          echo "=== DEBUGGING: Final dist directory structure ==="
+          find dist -type f | head -30
+          echo "=== DEBUGGING: Check if index.html files exist ==="
+          find dist -name "index.html"
 
       - name: Generate index.html
         run: |
