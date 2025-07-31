@@ -11,29 +11,19 @@ info: |
 transition: slide-left
 addons:
   - slidev-addon-python-runner
+python:
+  prelude: |
+    import math
+    import pandas as pd
+  loadPackagesFromImports: true
+  loadOptions:
+    fullStdLib: false
+    packages:
+      - pandas
 layout: cover
 ---
 
-# Pandas
-
----
-layout: image-right
-image: image.png
----
-
-## Why Pandas?
-
-### Performance
-Built on top of NumPy’s fast numerical arrays.
-
-### Convenience
-Offers intuitive data structures.
-
-### Functionality
-Tons of built-in data manipulation methods.
-
-### Compatibility
-Works with libraries like matplotlib, Seaborn, scikit-learn.
+# Tabular Data and Pandas
 
 ---
 layout: image-right
@@ -101,22 +91,47 @@ print(data[1]["age"])
 ```
 
 ---
+layout: section
+---
+
+# `import pandas as pd`
+
+---
+layout: image-right
+image: image.png
+---
+
+## Why Pandas?
+
+### Performance
+Built on top of NumPy’s fast numerical arrays.
+
+### Convenience
+Offers intuitive data structures.
+
+### Functionality
+Tons of built-in data manipulation methods (very copy-paste-able once you know Python's basics).
+
+### Compatibility
+Works with libraries like matplotlib, Seaborn, scikit-learn.
+
+
+---
 
 ## Series and DataFrames
 
 Pandas provides two fundamental data structures:
 
 1. **Series**  
-   - A one-dimensional labeled array.
+   - A one-dimensional labeled array (**basically a list**).
 
    ```python
-   import pandas as pd
    s = pd.Series([0.25, 0.5, 0.75, 1.0])
    print(s)
    ```
 
 2. **DataFrame**  
-   - A two-dimensional labeled data structure, akin to a table.
+   - A two-dimensional labeled data structure, akin to a table (**basically a dict of lists**).
 
    ```python
    df = pd.DataFrame({
@@ -138,14 +153,14 @@ backgroundSize: 50%
 
 A one-dimensional labeled array.
 
+(**this is basically a list**)
+
 #### Key Attributes
 - **values**: The underlying NumPy array
 - **index**: The associated array of labels
 - **dtype**: The data type of the values
 
 ```python {monaco-run} {autorun: false}
-import pandas as pd
-
 s = pd.Series([0.25, 0.5, 0.75, 1.0])
 print(s)
 ```
@@ -178,6 +193,8 @@ backgroundSize: contain
 
 A two-dimensional array with flexible row indices and column names (`df`, `foo_df`)
 
+(**this is basically a dict of lists**)
+
 #### Attributes
 - **values**: The underlying 2D NumPy array
 - **columns**: Index of column labels
@@ -199,8 +216,6 @@ print(df)
 Because pandas is built on top of NumPy, you can do basic math operations on DataFrames and Series:
 
 ```python {monaco-run} {autorun: false}
-import pandas as pd
-
 df = pd.DataFrame({
     'area': [423967, 695662, 141297, 170312, 149995],
     'population': [38332521, 26448193, 19651127, 19552860, 12882135]
@@ -498,3 +513,12 @@ Pandas has built-in plotting capabilities.
 - Use `df.plot(kind='bar')` to create a bar plot.
 - Use `df.plot(kind='hist')` to create a histogram.
 - Use `df.plot(kind='scatter')` to create a scatter plot.
+
+
+---
+layout: header-link
+---
+
+# Exercise: Explore w/ Pandas
+
+[bigd103.link/exploring-with-pandas](https://bigd103.link/exploring-with-pandas)
