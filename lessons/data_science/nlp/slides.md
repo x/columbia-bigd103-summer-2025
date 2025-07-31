@@ -370,7 +370,10 @@ Represents text by counting the occurrences of each word in a document, ignoring
 sentence = "John likes to watch movies. Mary likes movies too."
 bow = {}
 for word in sentence.split():
-    bow[word] = bow.get(word, 0) + 1
+    if word in bow:
+        bow[word] += 1
+    else:
+        bow[word] = 1
 print(bow)
 ```
 
@@ -467,7 +470,7 @@ def calculate_term_frequency(text):
         if term in term_freq:
             term_freq[term] += 1
         else:
-            term_freq[term] = 0
+            term_freq[term] = 1
     return term_freq
 ```
 
