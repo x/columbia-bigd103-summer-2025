@@ -130,26 +130,29 @@ jobs:
               <script>
                 // Handle SPA routing for GitHub Pages
                 const path = window.location.pathname;
-                const segments = path.split('/');
+                const segments = path.split('/').filter(s => s); // Remove empty segments
                 
                 // Check if this looks like a lesson path with a slide number
-                if (segments.length >= 4 && segments[1] === 'bigd-103' && segments[2] === 'lessons') {
-                  // Extract the lesson path (everything except the last segment if it's a number)
+                if (segments.length >= 4 && segments[0] === 'bigd-103' && segments[1] === 'lessons') {
                   const lastSegment = segments[segments.length - 1];
                   const isSlideNumber = /^\d+$/.test(lastSegment);
                   
                   if (isSlideNumber) {
-                    // Remove the slide number and redirect to the base lesson
-                    const lessonPath = segments.slice(0, -1).join('/');
+                    // Build the lesson path without the slide number
+                    const lessonSegments = segments.slice(0, -1);
+                    const lessonPath = '/' + lessonSegments.join('/') + '/';
                     const slideNumber = lastSegment;
-                    window.location.href = lessonPath + '/#' + slideNumber;
+                    
+                    // Redirect to the lesson with the slide number as hash
+                    window.location.replace(lessonPath + '#' + slideNumber);
                   } else {
                     // Just redirect to the lesson base
-                    window.location.href = path + (path.endsWith('/') ? '' : '/');
+                    const fullPath = '/' + segments.join('/') + '/';
+                    window.location.replace(fullPath);
                   }
                 } else {
                   // Fallback: redirect to home
-                  window.location.href = '/bigd-103/';
+                  window.location.replace('/bigd-103/');
                 }
               </script>
               <meta http-equiv="refresh" content="0; url=/bigd-103/">
