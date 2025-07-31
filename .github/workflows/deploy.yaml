@@ -59,6 +59,11 @@ jobs:
             target_dir="dist/$dirpath"
             mkdir -p "$target_dir"
             cp -r "$temp_build_path"/* "$target_dir/"
+            
+            # Copy any image files from the lesson directory to the target
+            find "$dirpath" -type f \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.gif" -o -name "*.svg" -o -name "*.webp" \) -exec cp {} "$target_dir/" \;
+            
+            # Clean up temp directory
             rm -rf "$temp_build_path"
           done
           
@@ -115,32 +120,46 @@ jobs:
           # Create .nojekyll file
           touch dist/.nojekyll
           
-          # Create redirect template file
-          cat > redirect_template.html << 'TEMPLATE'
-          <!DOCTYPE html>
-          <html>
-            <head>
-              <meta charset="utf-8">
-              <title>Redirecting...</title>
-              <script>
-                // Handle SPA routing - redirect to index.html with the same path
-                window.location.href = './';
-              </script>
-              <meta http-equiv="refresh" content="0; url=./">
-            </head>
-            <body>
-              <p>Redirecting to presentation...</p>
-              <p><a href="./">Click here if you are not redirected</a></p>
-            </body>
-          </html>
-          TEMPLATE
-          # For each lesson directory, create a simple HTML redirect to the index.html file
-          find dist/lessons -type d -mindepth 1 | while read dir; do
-            if [ -f "$dir/index.html" ]; then
-              echo "Adding redirect file for $dir"
-              cp redirect_template.html "$dir/404.html"
-            fi
-          done
+          # Create a global 404.html that handles SPA routing
+          cat > dist/404.html << 'GLOBAL404'
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
+    <script>
+      // Handle SPA routing for GitHub Pages
+      const path = window.location.pathname;
+      const segments = path.split('/');
+      
+      // Check if this looks like a lesson path with a slide number
+      if (segments.length >= 4 && segments[1] === 'bigd-103' && segments[2] === 'lessons') {
+        // Extract the lesson path (everything except the last segment if it's a number)
+        const lastSegment = segments[segments.length - 1];
+        const isSlideNumber = /^\d+$/.test(lastSegment);
+        
+        if (isSlideNumber) {
+          // Remove the slide number and redirect to the base lesson
+          const lessonPath = segments.slice(0, -1).join('/');
+          const slideNumber = lastSegment;
+          window.location.href = lessonPath + '/#' + slideNumber;
+        } else {
+          // Just redirect to the lesson base
+          window.location.href = path + (path.endsWith('/') ? '' : '/');
+        }
+      } else {
+        // Fallback: redirect to home
+        window.location.href = '/bigd-103/';
+      }
+    </script>
+    <meta http-equiv="refresh" content="0; url=/bigd-103/">
+  </head>
+  <body>
+    <p>Redirecting to presentation...</p>
+    <p><a href="/bigd-103/">Click here if you are not redirected</a></p>
+  </body>
+</html>
+GLOBAL404
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
