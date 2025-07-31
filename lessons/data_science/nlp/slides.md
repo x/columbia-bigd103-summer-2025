@@ -350,6 +350,55 @@ print(preprocess(test_text))  # Should print: ['hello', 'how', 'doing', 'today']
 
 ---
 layout: image-right
+image: image-1.png
+backgroundSize: contain
+---
+
+## Bag of Words (BoW)
+
+Represents text by counting the occurrences of each word in a document, ignoring grammar and word order.
+
+**Algorithm**:
+1. Create a “vocabulary” of unique words from the corpus.
+2. For each document, represent it as a vector of word counts.
+
+---
+
+## Bag of Words Example
+
+```python {monaco-run} {autorun: false}
+sentence = "John likes to watch movies. Mary likes movies too."
+bow = {}
+for word in sentence.split():
+    bow[word] = bow.get(word, 0) + 1
+print(bow)
+```
+
+---
+layout: two-cols-header-2
+---
+
+## Bag of Words
+
+::left::
+
+### Advantages
+
+1. **Simplicity** – Easy to implement and understand.
+2. **Interpretability** – The frequency-based representation is intuitive and straightforward.
+3. **Small Datasets Friendly** – Effective for simple text classification tasks with limited data.
+
+::right::
+
+### Disadvantages
+
+1. **Ignores Word Order** – Loses context and syntax information.
+2. **High Dimensionality** – Large vocabularies mean big, sparse vectors.
+3. **Vocabulary Sensitivity** – Requires careful feature selection (e.g., removing stopwords) to reduce noise.
+
+
+---
+layout: image-right
 image: image-2.png
 ---
 
@@ -501,54 +550,6 @@ backgroundSize: contain
 - Machines need numbers, not raw text.
 - Machines work best with fixed-sized vectors (lists) of numbers.
 - **Goal**: Convert text data into useful numerical features.
-
----
-layout: image-right
-image: image-1.png
-backgroundSize: contain
----
-
-## Bag of Words (BoW)
-
-Represents text by counting the occurrences of each word in a document, ignoring grammar and word order.
-
-**Algorithm**:
-1. Create a “vocabulary” of unique words from the corpus.
-2. For each document, represent it as a vector of word counts.
-
----
-
-## Bag of Words Example
-
-```python {monaco-run} {autorun: false}
-sentence = "John likes to watch movies. Mary likes movies too."
-bow = {}
-for word in sentence.split():
-    bow[word] = bow.get(word, 0) + 1
-print(bow)
-```
-
----
-layout: two-cols-header-2
----
-
-## Bag of Words
-
-::left::
-
-### Advantages
-
-1. **Simplicity** – Easy to implement and understand.
-2. **Interpretability** – The frequency-based representation is intuitive and straightforward.
-3. **Small Datasets Friendly** – Effective for simple text classification tasks with limited data.
-
-::right::
-
-### Disadvantages
-
-1. **Ignores Word Order** – Loses context and syntax information.
-2. **High Dimensionality** – Large vocabularies mean big, sparse vectors.
-3. **Vocabulary Sensitivity** – Requires careful feature selection (e.g., removing stopwords) to reduce noise.
 
 
 ---

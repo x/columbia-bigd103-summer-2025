@@ -48,15 +48,18 @@ jobs:
             
             echo "Building $slidepath with base $basepath"
             
-            # Build from root directory using full path, but output to a temp directory
-            temp_dir="temp_build_$(echo "$dirpath" | tr '/' '_')"
-            npx slidev build --base "$basepath" "$slidepath" --out "$temp_dir"
+            # Build using a temp directory name that's unique but predictable
+            temp_dir_name="temp_build_$(echo "$dirpath" | tr '/' '_')"
+            npx slidev build --base "$basepath" "$slidepath" --out "$temp_dir_name"
+            
+            # The temp directory is created relative to the slides.md file
+            temp_build_path="$dirpath/$temp_dir_name"
             
             # Move the built files to the correct location in main dist
             target_dir="dist/$dirpath"
             mkdir -p "$target_dir"
-            cp -r "$temp_dir"/* "$target_dir/"
-            rm -rf "$temp_dir"
+            cp -r "$temp_build_path"/* "$target_dir/"
+            rm -rf "$temp_build_path"
           done
           
           echo "=== DEBUGGING: Final dist directory structure ==="
