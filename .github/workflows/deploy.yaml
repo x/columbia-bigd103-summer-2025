@@ -32,28 +32,31 @@ jobs:
           # Create main dist directory
           mkdir -p dist
           
-          # Find all slides.md files and build them
-          find lessons -name "slides.md" | sort | while read slidepath; do
+          # Find all slides.md files and build them (excluding ones with HIDE files)
+          find lessons -name "slides.md" | while read slidepath; do
             # Extract directory path (remove /slides.md suffix)
             dirpath=$(dirname "$slidepath")
+            
+            # Skip if HIDE file exists in the same directory
+            if [ -f "$dirpath/HIDE" ]; then
+              echo "Skipping $slidepath (HIDE file found)"
+              continue
+            fi
             
             # Determine the base URL path
             basepath="/${{github.event.repository.name}}/$dirpath/"
             
             echo "Building $slidepath with base $basepath"
             
-            # Change to the lesson directory and build there
-            cd "$dirpath"
-            npx slidev build --base "$basepath" slides.md
+            # Build from root directory using full path, but output to a temp directory
+            temp_dir="temp_build_$(echo "$dirpath" | tr '/' '_')"
+            npx slidev build --base "$basepath" "$slidepath" --out "$temp_dir"
             
             # Move the built files to the correct location in main dist
-            target_dir="../../dist/$dirpath"
+            target_dir="dist/$dirpath"
             mkdir -p "$target_dir"
-            cp -r dist/* "$target_dir/"
-            rm -rf dist
-            
-            # Return to root directory
-            cd - > /dev/null
+            cp -r "$temp_dir"/* "$target_dir/"
+            rm -rf "$temp_dir"
           done
           
           echo "=== DEBUGGING: Final dist directory structure ==="
@@ -79,10 +82,16 @@ jobs:
               <ul>
           EOF
 
-          # Find all slides.md files and generate links
+          # Find all slides.md files and generate links (excluding ones with HIDE files)
           find lessons -name "slides.md" | sort | while read slidepath; do
             # Extract directory path (remove /slides.md suffix)
             dirpath=$(dirname "$slidepath")
+
+            # Skip if HIDE file exists in the same directory
+            if [ -f "$dirpath/HIDE" ]; then
+              echo "Skipping link for $slidepath (HIDE file found)"
+              continue
+            fi
 
             # Convert directory path to title (replace slashes and underscores with spaces, capitalize)
             title=$(echo "$dirpath" | sed 's|/| - |g' | sed 's|_| |g' | sed 's|\b\w|\U&|g')
