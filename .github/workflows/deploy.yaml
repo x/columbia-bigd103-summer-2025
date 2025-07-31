@@ -121,45 +121,45 @@ jobs:
           touch dist/.nojekyll
           
           # Create a global 404.html that handles SPA routing
-          cat > dist/404.html << 'GLOBAL404'
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Redirecting...</title>
-    <script>
-      // Handle SPA routing for GitHub Pages
-      const path = window.location.pathname;
-      const segments = path.split('/');
-      
-      // Check if this looks like a lesson path with a slide number
-      if (segments.length >= 4 && segments[1] === 'bigd-103' && segments[2] === 'lessons') {
-        // Extract the lesson path (everything except the last segment if it's a number)
-        const lastSegment = segments[segments.length - 1];
-        const isSlideNumber = /^\d+$/.test(lastSegment);
-        
-        if (isSlideNumber) {
-          // Remove the slide number and redirect to the base lesson
-          const lessonPath = segments.slice(0, -1).join('/');
-          const slideNumber = lastSegment;
-          window.location.href = lessonPath + '/#' + slideNumber;
-        } else {
-          // Just redirect to the lesson base
-          window.location.href = path + (path.endsWith('/') ? '' : '/');
-        }
-      } else {
-        // Fallback: redirect to home
-        window.location.href = '/bigd-103/';
-      }
-    </script>
-    <meta http-equiv="refresh" content="0; url=/bigd-103/">
-  </head>
-  <body>
-    <p>Redirecting to presentation...</p>
-    <p><a href="/bigd-103/">Click here if you are not redirected</a></p>
-  </body>
-</html>
-GLOBAL404
+          cat > dist/404.html << 'EOF'
+          <!DOCTYPE html>
+          <html>
+            <head>
+              <meta charset="utf-8">
+              <title>Redirecting...</title>
+              <script>
+                // Handle SPA routing for GitHub Pages
+                const path = window.location.pathname;
+                const segments = path.split('/');
+                
+                // Check if this looks like a lesson path with a slide number
+                if (segments.length >= 4 && segments[1] === 'bigd-103' && segments[2] === 'lessons') {
+                  // Extract the lesson path (everything except the last segment if it's a number)
+                  const lastSegment = segments[segments.length - 1];
+                  const isSlideNumber = /^\d+$/.test(lastSegment);
+                  
+                  if (isSlideNumber) {
+                    // Remove the slide number and redirect to the base lesson
+                    const lessonPath = segments.slice(0, -1).join('/');
+                    const slideNumber = lastSegment;
+                    window.location.href = lessonPath + '/#' + slideNumber;
+                  } else {
+                    // Just redirect to the lesson base
+                    window.location.href = path + (path.endsWith('/') ? '' : '/');
+                  }
+                } else {
+                  // Fallback: redirect to home
+                  window.location.href = '/bigd-103/';
+                }
+              </script>
+              <meta http-equiv="refresh" content="0; url=/bigd-103/">
+            </head>
+            <body>
+              <p>Redirecting to presentation...</p>
+              <p><a href="/bigd-103/">Click here if you are not redirected</a></p>
+            </body>
+          </html>
+          EOF
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
