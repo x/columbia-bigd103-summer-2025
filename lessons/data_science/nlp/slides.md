@@ -959,10 +959,7 @@ def calculate_subset_term_frequency(subset_docs):
     # Count terms across ALL documents in the subset
     for doc in subset_docs:
         for term in preprocess(doc):
-            if term in subset_tf:
-                subset_tf[term] += 1
-            else:
-                subset_tf[term] = 1
+            subset_tf[term] = subset_tf.get(term, 0) + 1
     return subset_tf
 ```
 
@@ -976,13 +973,17 @@ Count how many documents in the ENTIRE corpus contain each term.
 ```python
 def calculate_document_frequency(corpus, target_terms):
     doc_freq = {}
-    # This is exactly the same as regular TF-IDF!
+
+    # First, preprocess all of the documents in the corpus
+    preprocessed_corpus = []
+    for doc in corpus:
+        preprocessed_corpus.append(preprocess(doc))
+
+    # Next, for each term in the target terms, count how many documents contain it
     for term in target_terms:
-        count = 0
-        for doc in corpus:
-            if term in preprocess(doc):
-                count += 1
-        doc_freq[term] = count
+        for doc in preprocessed_corpus:
+            if term in doc:
+                doc_freq[term] = doc_freq.get(term, 0) + 1
     return doc_freq
 ```
 
