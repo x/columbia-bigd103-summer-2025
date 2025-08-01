@@ -856,75 +856,10 @@ layout: two-cols-header-2
 
 ---
 
-## Simple Lexicon-Based Sentiment with SpaCy
-
-SpaCy’s default English models do not include a built-in sentiment classifier. However, we can roll our own simple version by maintaining a small dictionary (“lexicon”) of words pre-labeled with sentiment scores (e.g., positive and negative words) and then counting their occurrences in a piece of text.
-
-### How It Works:
-
-1. Choose or create a lexicon of positive and negative words.
-2. Convert input text to a spaCy Doc object.
-3. For each token, check if it’s in our lexicon of positive or negative words.
-4. Sum up all token scores to get an approximate sentiment.
-
-_(This is a simplistic approach—real-world systems typically use more advanced machine-learning or large language model techniques.)_
-
----
-
-## Example Lexicon
-
-Below is a tiny example lexicon that assigns +1 to positive words and -1 to negative words. Words not in the lexicon will contribute 0 to the overall sentiment score.
-
-```python
-POSITIVE_WORDS = {
-    "amazing", "awesome", "good", "great", "wonderful", "love", "happy", "fantastic"
-}
-
-NEGATIVE_WORDS = {
-    "bad", "terrible", "awful", "sad", "unhappy", "hate", "poor", "worse"
-}
-```
-
-_(In practice, your lexicon might have hundreds or thousands of words, possibly with different numeric scores.)_
-
----
-
-## Lexicon-Based Sentiment Analysis in SpaCy
-
-```python
-POSITIVE_WORDS = {...}
-NEGATIVE_WORDS = {...}
-
-def get_sentiment_score(text):
-    """
-    Returns a simple sentiment score by counting words
-    in the text that appear in our POSITIVE_WORDS or NEGATIVE_WORDS sets.
-    """
-    doc = nlp(text.lower())  # spaCy Doc object (lowercased to match our sets)
-    score = 0
-    for token in doc:
-        lemma = token.lemma_   # get lemma so "loved" -> "love"
-        if lemma in POSITIVE_WORDS:
-            score += 1
-        elif lemma in NEGATIVE_WORDS:
-            score -= 1
-    return score
-
-sentence = "I am very unhappy with this product, but I love the packaging!"
-score = get_sentiment_score(sentence)
-```
-
----
-
 ## Sentiment Analysis with TextBlob
 
 ```python
-import spacy
 from textblob import TextBlob
-
-nlp = spacy.load("en_core_web_sm")
-sentence = "I am very unhappy with this product."
-doc = nlp(sentence)
 
 blob = TextBlob(doc.text)
 
