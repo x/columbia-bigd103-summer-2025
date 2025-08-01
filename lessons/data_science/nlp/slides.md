@@ -555,257 +555,6 @@ backgroundSize: contain
 - **Goal**: Convert text data into useful numerical features.
 
 
----
-layout: section
-hideInToc: true
----
-
-# Word Embeddings
-
----
-layout: image-right
-image: image-3.png
-backgroundSize: contain
----
-
-## First, What is an Embedding?
-
-Let's consider the humble Bulbasaur.
-
-```python
-df.set_index("Name", inplace=True)
-df[["HP", "Attack", "Defense", "Sp. Atk", "Sp. Def", "Speed"]]
-df.loc["Bulbasaur"]
-```
-```
-HP         45
-Attack     49
-Defense    49
-Sp. Atk    65
-Sp. Def    65
-Speed      45
-Name: Bulbasaur, dtype: int64
-```
-
----
-layout: image
-image: image-5.png
-backgroundSize: contain
----
-
----
-layout: image-right
-image: image-7.png
-backgroundSize: contain
----
-
-## Distance Between Bulbasaur and Pikachu
-
-Each Pokemon can be thought of as a vector in a 6-dimensional space. And therefore, we can calculate the distance between them the same way we would calculate the distance between two points in 2-dimensional space.
-
-```python
-p = df.loc["Bulbasaur"].values
-q = df.loc["Pikachu"].values
-
-np.linalg.norm(p - q)
-```
-
-
-
----
-layout: two-cols-header-2
----
-
-```python
-df.loc[['Bulbasaur', 'Vanillite']]
-```
-```
-           HP  Attack  Defense  Sp. Atk  Sp. Def  Speed
-Name
-Bulbasaur  45      49       49       65       65     45
-Vanillite  36      50       50       65       60     44
-```
-
-::left::
-
-<img src="https://archives.bulbagarden.net/media/upload/thumb/f/fb/0001Bulbasaur.png/500px-0001Bulbasaur.png" width='300em' >
-
-::right::
-
-<img src="https://archives.bulbagarden.net/media/upload/thumb/1/1a/0582Vanillite.png/500px-0582Vanillite.png" width='300em' >
-
----
-layout: two-cols-header-2
----
-
-```python
-df.loc[['Pikachu', 'Diglett']]
-```
-```
-         HP  Attack  Defense  Sp. Atk  Sp. Def  Speed
-Name
-Pikachu  35      55       40       50       50     90
-Diglett  10      55       25       35       45     95
-```
-
-::left::
-
-<img src="https://archives.bulbagarden.net/media/upload/thumb/4/4a/0025Pikachu.png/500px-0025Pikachu.png" width='300em' >
-
-::right::
-
-<img src="https://archives.bulbagarden.net/media/upload/thumb/a/a6/0050Diglett.png/500px-0050Diglett.png" width='300em' >
-
-
----
-layout: two-cols-header-2
----
-
-```python
-df.loc[['Nidoqueen', 'Poliwrath']]
-```
-```
-           HP  Attack  Defense  Sp. Atk  Sp. Def  Speed
-Name
-Nidoqueen  90      92       87       75       85     76
-Poliwrath  90      95       95       70       90     70
-```
-
-::left::
-
-<img src="https://archives.bulbagarden.net/media/upload/thumb/9/9d/0031Nidoqueen.png/500px-0031Nidoqueen.png" width='300em' >
-
-::right::
-
-<img src="https://archives.bulbagarden.net/media/upload/thumb/8/80/0062Poliwrath.png/500px-0062Poliwrath.png" width='300em' >
-
----
-layout: image-right
-image: nlp-3.png
-backgroundSize: contain
----
-
-## Word Embeddings
-
-- Word embeddings are dense, low-dimensional vectors.
-- They capture semantic relationships between words.
-- Words with similar meanings have embeddings that end up being close together.
-
-
----
-layout: image-right
-image: nlp-4.png
-backgroundSize: contain
----
-
-## Comparing Word Vectors
-
-### Semantic Similarity
-Words that appear in similar contexts (e.g., “king” and “queen” or “dog” and “puppy”) tend to have similar vector representations.
-
-### Simple Vector Arithmetic (Analogies)
-$$
-\text{king} - \text{man} + \text{woman} \approx \text{queen}
-$$
-
----
-layout: image-right
-image: IMG_1576.png
-backgroundSize: contain
----
-
-## Word2Vec
-
-- Word2vec was developed by Tomáš Mikolov and colleagues at Google and published in 2013.
--Vectors capture information about the meaning of the word based on the surrounding words.
-- The word2vec algorithm estimates these representations by modeling text in a large corpus.
-- Once trained, such a model can detect synonymous words or suggest additional words for a partial sentence.
-
----
-layout: image-right
-image: nlp-5.png
-backgroundSize: contain
----
-
-## Word Embeddings with SpaCy
-
-```python
-import spacy
-import numpy as np
-
-nlp = spacy.load("en_core_web_lg")  # Large English model
-cat = nlp("cat")
-dog = nlp("dog")
-ham = nlp("ham")
-
-print(f"Distance from 'cat' to 'dog' is {np.linalg.norm(cat.vector - dog.vector)}")
-print(f"Distance from 'dog' to 'ham' is {np.linalg.norm(cat.vector - ham.vector)}")
-```
-```
-Distance from 'cat' to 'dog' is 42.8679084777832
-Distance from 'dog' to 'ham' is 77.25950622558594
-```
-
----
-layout: section
-hideInToc: true
----
-
-# Some More SpaCy Stuff
-
----
-
-## Faster SpaCy
-
-One technique to speed up spaCy is to parallelize the processing of the text. This can be done using the `nlp.pipe` method.
-
-```python
-import spacy
-from tqdm.notebook import tqdm 
-
-nlp = spacy.load("en_core_web_sm")
-
-df["doc"] = list(tqdm(nlp.pipe(df['text'], n_process=4), total=len(df)))
-
-df["preprocessed_text"] = df["doc"].apply(preprocess)
-```
-
----
-
-## SpaCy Processing Pipelines
-
-When you call `nlp` on a text, spaCy first tokenizes the text to produce a Doc object. The Doc is then processed in several different steps – this is also referred to as the processing pipeline
-
-![alt text](./image-10.png)
-
-SpaCy supports optional libraries that extend this pipeline with new features such as detecting language.
-
-```python
-import spacy
-import spacy_fastlang
-nlp = spacy.load("en_core_web_lg")
-nlp.add_pipe("language_detector")
-df["doc"] = list(nlp.pipe(df['text'], n_process=4))
-df["language"] = df["doc"].apply(lambda doc: doc._.language)
-```
-
----
-
-## SpaCy Parts of Speech
-
-In addition to lemmatization and stop-word removal, spaCy can also be used to get the part of speech of a word. This lets us extract things like nouns from text.
-
-```python
-def parse_nouns(doc):
-    """Returns a string of just the proper nouns lowercased."""
-    nouns = []
-    for token in doc:
-        if token.pos_ == "NOUN" or token.pos_ == "PROPN":
-            nouns.append(token.text.lower())
-    return " ".join(nouns)
-
-df["nouns"] = df["doc"].apply(parse_nouns)
-```
 
 ---
 layout: section
@@ -1058,3 +807,195 @@ layout: header-link
 ## Exercise: Subset TF-IDF on NSF Grants
 
 [bigd103.link/nsf-grants](https://bigd103.link/nsf-grants)
+
+
+---
+layout: section
+hideInToc: true
+---
+
+# Word Embeddings
+
+---
+layout: image-right
+image: image-3.png
+backgroundSize: contain
+---
+
+## First, What is an Embedding?
+
+Let's consider the humble Bulbasaur.
+
+```python
+df.set_index("Name", inplace=True)
+df[["HP", "Attack", "Defense", "Sp. Atk", "Sp. Def", "Speed"]]
+df.loc["Bulbasaur"]
+```
+```
+HP         45
+Attack     49
+Defense    49
+Sp. Atk    65
+Sp. Def    65
+Speed      45
+Name: Bulbasaur, dtype: int64
+```
+
+---
+layout: image
+image: image-5.png
+backgroundSize: contain
+---
+
+---
+layout: image-right
+image: image-7.png
+backgroundSize: contain
+---
+
+## Distance Between Bulbasaur and Pikachu
+
+Each Pokemon can be thought of as a vector in a 6-dimensional space. And therefore, we can calculate the distance between them the same way we would calculate the distance between two points in 2-dimensional space.
+
+```python
+p = df.loc["Bulbasaur"].values
+q = df.loc["Pikachu"].values
+
+np.linalg.norm(p - q)
+```
+
+
+
+---
+layout: two-cols-header-2
+---
+
+```python
+df.loc[['Bulbasaur', 'Vanillite']]
+```
+```
+           HP  Attack  Defense  Sp. Atk  Sp. Def  Speed
+Name
+Bulbasaur  45      49       49       65       65     45
+Vanillite  36      50       50       65       60     44
+```
+
+::left::
+
+<img src="https://archives.bulbagarden.net/media/upload/thumb/f/fb/0001Bulbasaur.png/500px-0001Bulbasaur.png" width='300em' >
+
+::right::
+
+<img src="https://archives.bulbagarden.net/media/upload/thumb/1/1a/0582Vanillite.png/500px-0582Vanillite.png" width='300em' >
+
+---
+layout: two-cols-header-2
+---
+
+```python
+df.loc[['Pikachu', 'Diglett']]
+```
+```
+         HP  Attack  Defense  Sp. Atk  Sp. Def  Speed
+Name
+Pikachu  35      55       40       50       50     90
+Diglett  10      55       25       35       45     95
+```
+
+::left::
+
+<img src="https://archives.bulbagarden.net/media/upload/thumb/4/4a/0025Pikachu.png/500px-0025Pikachu.png" width='300em' >
+
+::right::
+
+<img src="https://archives.bulbagarden.net/media/upload/thumb/a/a6/0050Diglett.png/500px-0050Diglett.png" width='300em' >
+
+
+---
+layout: two-cols-header-2
+---
+
+```python
+df.loc[['Nidoqueen', 'Poliwrath']]
+```
+```
+           HP  Attack  Defense  Sp. Atk  Sp. Def  Speed
+Name
+Nidoqueen  90      92       87       75       85     76
+Poliwrath  90      95       95       70       90     70
+```
+
+::left::
+
+<img src="https://archives.bulbagarden.net/media/upload/thumb/9/9d/0031Nidoqueen.png/500px-0031Nidoqueen.png" width='300em' >
+
+::right::
+
+<img src="https://archives.bulbagarden.net/media/upload/thumb/8/80/0062Poliwrath.png/500px-0062Poliwrath.png" width='300em' >
+
+---
+layout: image-right
+image: nlp-3.png
+backgroundSize: contain
+---
+
+## Word Embeddings
+
+- Word embeddings are dense, low-dimensional vectors.
+- They capture semantic relationships between words.
+- Words with similar meanings have embeddings that end up being close together.
+
+
+---
+layout: image-right
+image: nlp-4.png
+backgroundSize: contain
+---
+
+## Comparing Word Vectors
+
+### Semantic Similarity
+Words that appear in similar contexts (e.g., “king” and “queen” or “dog” and “puppy”) tend to have similar vector representations.
+
+### Simple Vector Arithmetic (Analogies)
+$$
+\text{king} - \text{man} + \text{woman} \approx \text{queen}
+$$
+
+---
+layout: image-right
+image: IMG_1576.png
+backgroundSize: contain
+---
+
+## Word2Vec
+
+- Word2vec was developed by Tomáš Mikolov and colleagues at Google and published in 2013.
+-Vectors capture information about the meaning of the word based on the surrounding words.
+- The word2vec algorithm estimates these representations by modeling text in a large corpus.
+- Once trained, such a model can detect synonymous words or suggest additional words for a partial sentence.
+
+---
+layout: image-right
+image: nlp-5.png
+backgroundSize: contain
+---
+
+## Word Embeddings with SpaCy
+
+```python
+import spacy
+import numpy as np
+
+nlp = spacy.load("en_core_web_lg")  # Large English model
+cat = nlp("cat")
+dog = nlp("dog")
+ham = nlp("ham")
+
+print(f"Distance from 'cat' to 'dog' is {np.linalg.norm(cat.vector - dog.vector)}")
+print(f"Distance from 'dog' to 'ham' is {np.linalg.norm(cat.vector - ham.vector)}")
+```
+```
+Distance from 'cat' to 'dog' is 42.8679084777832
+Distance from 'dog' to 'ham' is 77.25950622558594
+```
