@@ -1,11 +1,17 @@
-# Welcome to [Slidev](https://github.com/slidevjs/slidev)!
+# BIGD103 Slides
 
-To start the slide show:
+## View Online
 
-- `pnpm install`
-- `pnpm dev`
-- visit <http://localhost:3030>
+[https://peticol.as/bigd-103/](https://peticol.as/bigd-103/)
 
-Edit the [slides.md](./slides.md) to see the changes.
+## Running Locally
 
-Learn more about Slidev at the [documentation](https://sli.dev/).
+```bash
+nvm use --lts && npm run dev --slides=lessons/data_science/models/slides.md
+```
+
+## Export to PDF
+
+```bash
+nvm use --lts && npm run export --slides=lessons/data_science/models/slides.md
+```
