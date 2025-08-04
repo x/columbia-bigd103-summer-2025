@@ -540,27 +540,6 @@ layout: section
 hideInToc: true
 ---
 
-# Basic Text Representation
-
----
-layout: image-right
-image: image.png
-backgroundSize: contain
----
-
-## Problem Statement
-
-- Machines need numbers, not raw text.
-- Machines work best with fixed-sized vectors (lists) of numbers.
-- **Goal**: Convert text data into useful numerical features.
-
-
-
----
-layout: section
-hideInToc: true
----
-
 # Sentiment Analysis
 
 ---
@@ -808,6 +787,29 @@ layout: header-link
 
 [bigd103.link/nsf-grants](https://bigd103.link/nsf-grants)
 
+See slides at:
+`bigd103.link/slides`
+
+
+
+---
+layout: section
+hideInToc: true
+---
+
+# Basic Text Representation
+
+---
+layout: image-right
+image: image.png
+backgroundSize: contain
+---
+
+## Problem Statement
+
+- Machines need numbers, not raw text.
+- Machines work best with fixed-sized vectors (lists) of numbers.
+- **Goal**: Convert text data into useful numerical features.
 
 ---
 layout: section
