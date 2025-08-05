@@ -25,9 +25,9 @@ layout: two-cols-header-2
 
 Your "training" dataset is composed of examples of labeled examples:
   - $X$ - features
-  - $Y$ - labels
+  - $y$ - labels
 
-A supervised learning model learns to predict the label $Y$ from the features $X$.
+A supervised learning model learns to predict the label $y$ from the features $X$.
 
 ::right::
 

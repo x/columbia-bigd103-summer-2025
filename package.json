@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "slidev --base $(dirname $npm_config_slides) $npm_config_slides --port 3030",
-    "export": "slidev export --per-slide --format pdf --output exports/$(basename $(dirname $npm_config_slides)).pdf $npm_config_slides"
+    "export": "slidev export --per-slide --format pdf --timeout 60000 --wait-until none --output exports/$(basename $(dirname $npm_config_slides)).pdf $npm_config_slides"
   },
   "dependencies": {
     "@slidev/cli": "^52.0.0",
