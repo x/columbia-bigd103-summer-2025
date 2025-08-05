@@ -1,5 +1,6 @@
 ---
-title: Data Science and Machine Learning 1 - Machine Learning - Supervised Learning
+title: Data Science and Machine Learning 1 - Machine Learning - Unsupervised Learning
+exportFilename: unsupervised-learning
 theme: ../../../shared/theme
 fonts:
     sans: 'IBM Plex Serif'
@@ -15,7 +16,7 @@ layout: cover
 # Unsupervised Machine Learning
 
 ---
-layout: image-right
+layout: image-right-invert-light
 image: image-4.png
 backgroundSize: contain
 ---
@@ -23,10 +24,6 @@ backgroundSize: contain
 ## Unsupervised Learning
 
 Trains algorithms on *unlabeled* data to find patterns, structures, or anomalies.  
-
-### Goal
-- Discover hidden relationships or groupings.
-- Preprocessing step for exploratory analysis.
 
 ### Applications
 - **Exploratory data analysis**: Gain insights before building predictive models.  
@@ -217,7 +214,7 @@ PCA identifies the directions of greatest variance in the data and projects the 
 > **Feature Engineering**: PCA can serve as a *feature extraction* method, creating new uncorrelated features (principal components) from existing ones.
 
 ---
-layout: image-right
+layout: image-right-invert-light
 image: image-11.png
 backgroundSize: contain
 ---
@@ -246,19 +243,15 @@ layout: header-link
 hideInToc: true
 ---
 
-# Exercise
+# Exercise: Clustering Penguins
 
-[https://shorturl.at/GtDys](https://shorturl.at/GtDys)
-
-(Let's do this one together)
+[bigd103.link/clustering-penguins](https://bigd103.link/clustering-penguins)
 
 ---
 layout: header-link
 hideInToc: true
 ---
 
-# Exercise
+# Exercise: Clustering NYC Italian Restaurants
 
-[https://shorturl.at/CIMXx](https://shorturl.at/CIMXx)
-
-(Do this one on your own)
+[bigd103.link/clustering-italian](https://bigd103.link/clustering-italian)

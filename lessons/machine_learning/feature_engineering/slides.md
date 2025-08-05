@@ -1,5 +1,6 @@
 ---
-title: Data Science and Machine Learning 1 - Machine Learning - Supervised Learning
+title: Data Science and Machine Learning 1 - Machine Learning - Feature Engineering
+exportFilename: feature-engineering
 theme: ../../../shared/theme
 fonts:
     sans: 'IBM Plex Serif'
@@ -230,3 +231,17 @@ Accounts for frequency across documents.
 
 ### Embeddings
 Word2Vec / GloVe / BERT embeddings for deeper semantic representation.
+
+---
+layout: header-link
+---
+
+<center>
+
+![](./image-6.png){width="25%"}
+
+</center>
+
+## Exercise: Classify That Pokemon
+
+[bigd103.link/classify-pokemon](https://bigd103.link/classify-pokemon)

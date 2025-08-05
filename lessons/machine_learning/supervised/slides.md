@@ -1,5 +1,6 @@
 ---
 title: Data Science and Machine Learning 1 - Machine Learning - Supervised Learning
+exportFilename: supervised-learning
 theme: ../../../shared/theme
 fonts:
     sans: 'IBM Plex Serif'
@@ -1351,6 +1352,46 @@ backgroundSize: contain
 - **Polynomial**: polynomial transformation
 
 ---
+layout: two-cols-header-2
+---
+
+## SVM in Practice: Cancer Diagnosis
+
+::left::
+
+Let's use SVM to classify breast cancer tumors as malignant or benign using sklearn's built-in dataset.
+
+```python
+from sklearn.model_selection import train_test_split
+from sklearn.svm import SVC
+from sklearn.preprocessing import StandardScaler
+
+# Split the data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+# IMPORTANT: Scale features for SVM!
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+```
+
+**Note**: SVMs are sensitive to feature scales! Always **normalize** your data.
+
+::right::
+
+```python
+# Train SVM with RBF kernel
+svm = SVC(kernel='rbf', C=1.0, gamma='scale')
+svm.fit(X_train_scaled, y_train)
+
+# Evaluate
+y_pred = svm.predict(X_test_scaled)
+tp, tn, fp, fn = calculate_confusion_matrix(y_test, y_pred)
+accuracy = (tp + tn) / (tp + tn + fp + fn)
+print(f"Accuracy: {accuracy:.1%}")
+```
+
+---
 layout: section
 hideInToc: true
 ---
@@ -1617,6 +1658,6 @@ backgroundSize: contain
 
 ---
 layout: image
-image: Untitled_Artwork\ 6.png
+image: "Untitled_Artwork 6.png"
 backgroundSize: contain
 ---
