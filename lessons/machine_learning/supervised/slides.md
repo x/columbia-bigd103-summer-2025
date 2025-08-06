@@ -1355,11 +1355,9 @@ backgroundSize: contain
 layout: two-cols-header-2
 ---
 
-## SVM in Practice: Cancer Diagnosis
+## SVM in Practice
 
 ::left::
-
-Let's use SVM to classify breast cancer tumors as malignant or benign using sklearn's built-in dataset.
 
 ```python
 from sklearn.model_selection import train_test_split
@@ -1554,6 +1552,9 @@ backgroundSize: contain
   $$
   where $p_i$ is the proportion of instances of class $i$ in the node.
 
+
+> **Intuition:** If I randomly selected two items, how likely is it that they're different classes?
+
 ---
 layout: image-right
 image: image-21.png
@@ -1569,6 +1570,8 @@ backgroundSize: contain
   $$
   where $p_i$ is the proportion of instances of class $i$ in the node.
 
+> **Intuition:** How surprised am I on average when I see the class label?
+
 ---
 layout: image-right
 image: image-24.png
@@ -1583,6 +1586,8 @@ backgroundSize: contain
   IG(S) = H(\text{parent}) - \sum_{j} \frac{|S_j|}{|S|} H(S_j)
   $$
   where $H(\text{parent})$ is the entropy of the parent node, $S_j$ are the subsets formed by the split, and $|S_j|$ is the number of instances in subset $S_j$.
+
+> **Intuition:** How much less surprised am I after the split?
 
 ---
 layout: image-right
@@ -1643,8 +1648,8 @@ hideInToc: true
 # Machine Learning in Production
 
 ---
-layout: image-right
-image: /02-Predictive-Analytics-Monitoring_v5-800w.gif
+layout: image-right-invert-light
+image: "Untitled_Artwork 6.png"
 backgroundSize: contain
 ---
 
@@ -1655,9 +1660,3 @@ backgroundSize: contain
 3. **Model Deployment**: Integrate the model into a system or application.
 4. **Model Monitoring**: Track the model's performance over time.
 5. **Model Updates**: Update the model as needed.
-
----
-layout: image
-image: "Untitled_Artwork 6.png"
-backgroundSize: contain
----
