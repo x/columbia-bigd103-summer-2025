@@ -22,6 +22,8 @@ layout: section
 ## Why Are we Here?
 
 ---
+layout: center
+---
 
 ## Learning Objectives
 
@@ -43,15 +45,14 @@ transition: fade
 ### Core Technical Skills
 
 - Python programming fundamentals (most common response)
-- Building practical applications/products with code
+- Building applications/products with code
 - Data visualization and creating visual outputs
 
 ### AI/ML Deep Dive
 
-- Understanding how AI works "under the hood"
-- Large Language Models (LLMs)
-- Deep learning techniques (LSTM specifically mentioned)
-- Neural networks and model architectures
+- Understanding AI "under the hood"
+- Machine Learning algorithms and techniques
+- Neural networks and LLMs
 
 ::right::
 
@@ -66,6 +67,7 @@ transition: fade
 - Hands-on coding experience
 - Understanding AI, not just using it
 - Building "incredible" things
+
 
 ---
 layout: two-cols-header-2
@@ -83,7 +85,7 @@ layout: two-cols-header-2
 
 ### AI/ML Deep Dive
 
-- Understanding how AI works "under the hood" 🟨
+- Understanding AI "under the hood" 🟨
 - Machine Learning algorithms and techniques ✅
 - Neural networks and LLMs 🟨
 
@@ -290,6 +292,72 @@ func nthFibonacci(n int) int {
 layout: two-cols-header-2
 ---
 
+## Other Kinds of Programming
+
+::left::
+
+### Web Development
+
+- Usually split into "Front-end" and "Back-end"
+- Front-end: Focuses on the user interface and user experience (HTML, CSS, and JavaScript)
+- Back-end: Focuses on server-side logic, databases, and application performance. (Python, Go, Ruby, Java, SQL)
+
+### Mobile Development
+
+- Focuses on building applications for mobile devices (smartphones, tablets).
+- Technologies include Swift (for iOS), Kotlin (for Android), and cross-platform frameworks like Flutter and React Native.
+
+::right::
+
+### Hardware Development
+
+- Focuses on designing and building physical devices and systems.
+- Entry-level hardware include Arduino, Raspberry Pi.
+- Involves programming in languages like C, C++ (some traction in MicroPython).
+
+### Site-Reliability Engineering
+
+- Focuses on maintaining and improving the availability and performance of systems.
+- Involves monitoring, incident response, and infrastructure management.
+
+
+---
+layout: two-cols-header-2
+---
+
+## Other Kinds of Programming
+
+::left::
+
+
+### Data Visualization
+
+- Hybrid of Data Science and Art
+- Telling stories with data through visual representation.
+
+### Security Engineering
+
+- Focuses on protecting systems, networks, and data from cyber threats.
+- Involves penetration testing, vulnerability assessment, and secure coding practices.
+- Requires knowledge of security protocols, cryptography, and risk management.
+
+::right::
+
+### Simulation Programming
+
+- Focuses on creating models to replicate real-world processes or systems.
+- Often used in scientific research, engineering, and training simulations.
+- Businesses try to build "Digital Twins"
+
+### Emulator Development
+
+- Focuses on creating software that mimics the hardware and functionality of other systems.
+- Commonly used for gaming, mobile apps, and legacy system support.
+
+---
+layout: two-cols-header-2
+---
+
 ## Game Creation
 
 ::left::
@@ -328,3 +396,21 @@ layout: section
 
 ---
 
+## What We Have Left
+
+
+☑ Python Fundamentals (Conditionals, Loops, Functions, Data Structures)
+
+☑ Pandas and working with Tabular Data
+
+☑ Group By and Aggregation Statistics
+
+☑ NLP (TFIDF, Sentiment Analysis, Word Embeddings)
+
+☑ Supervised Learning (Regression, Classification)
+
+☐ Unsupervised Learning (Clustering, Dimensionality Reduction)
+
+☐ Neural Networks (Perceptrons, CNNs, RNNs)
+
+☐ Large Language Models and AI Trends
