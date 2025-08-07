@@ -201,3 +201,7 @@ h3 {
     @apply text-2xl mt-4 opacity-100 font-mono;
   }
 }
+
+.smaller-text {
+  font-size: 1em;
+}
