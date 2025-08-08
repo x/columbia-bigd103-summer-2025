@@ -1,5 +1,6 @@
 ---
 title: Data Science and Machine Learning 1 - Machine Learning - Convolutional Neural Networks
+exportFilename: convolutional-neural-networks
 theme: ../../../shared/theme
 fonts:
     sans: 'IBM Plex Serif'
@@ -228,6 +229,16 @@ Common pattern:
 7. Output
 
 **Early** CNN references: LeNet-5 (Yann LeCun) for digit recognition in the 1990s.
+
+
+---
+layout: image
+image: image-17.png
+backgroundSize: contain
+---
+
+<!-- https://static.googleusercontent.com/media/research.google.com/en//archive/unsupervised_icml2012.pdf -->
+<!-- cat face from 2012 Google Research paper -->
 
 ---
 layout: header-link

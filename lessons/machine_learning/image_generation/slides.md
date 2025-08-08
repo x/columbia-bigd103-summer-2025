@@ -1,5 +1,6 @@
 ---
 title: Data Science and Machine Learning 1 - Machine Learning - Image Generation
+exportFilename: image-generation
 theme: ../../../shared/theme
 fonts:
     sans: 'IBM Plex Serif'
@@ -61,13 +62,59 @@ backgroundSize: contain
 3. **Diffusion (Refinement)**  
    - Iteratively denoises or refines the generated image, making it more realistic over multiple steps.
 
+
+---
+layout: image-right
+image: nlp-3.png
+backgroundSize: contain
+---
+
+## Word Embeddings
+
+- Word embeddings are dense, low-dimensional vectors.
+- They capture semantic relationships between words.
+- Words with similar meanings have embeddings that end up being close together.
+
+$$
+\begin{align}
+  \text{Embedding}(\text{"dog"}) &= \begin{bmatrix}
+         x_{1} \\
+         x_{2} \\
+         \vdots \\
+         x_{m}
+       \end{bmatrix}
+\end{align}
+$$
+
+---
+layout: image-right
+image: nlp-4.png
+backgroundSize: contain
+---
+
+## Comparing Word Vectors
+
+### Semantic Similarity
+Words that appear in similar contexts tend to have similar vector representations.
+
+### Distance Between Word Vectors
+
+$\text{dist}(\text{dog}, \text{puppy}) < \text{dist}(\text{dog}, \text{car})$
+
+### Simple Vector Arithmetic
+$\text{king} - \text{man} + \text{woman} \approx \text{queen}$
+
 ---
 layout: center
+transition: fade
 ---
 
 ![](./Untitled_Artwork.png){class="invert-when-dark-mode" style="width: 100%"}
 
 
+---
+layout: center
+transition: fade
 ---
 
 
@@ -75,13 +122,22 @@ layout: center
 
 
 ---
+layout: center
+transition: fade
+---
 
 ![](./Untitled_Artwork_3.png){class="invert-when-dark-mode" style="width: 100%"}
 
 ---
+layout: center
+transition: fade
+---
 
 ![](./Untitled_Artwork_4.png){class="invert-when-dark-mode" style="width: 100%"}
 
+---
+layout: center
+transition: fade
 ---
 
 ![](./Untitled_Artwork_5.png){class="invert-when-dark-mode" style="width: 100%"}
@@ -193,6 +249,9 @@ backgroundSize: contain
 - **Question**:
     - Why is this so difficult?
     - What does this tell us about generative transformers?
+
+
+_**Note:** This was no longer true for OpenAI's 4o Image Generation released March 2025_
 
 ---
 layout: header-link

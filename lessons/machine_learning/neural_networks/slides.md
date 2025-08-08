@@ -1,5 +1,6 @@
 ---
-title: Data Science and Machine Learning 1 - Machine Learning - Linear Algebra Essentials
+title: Data Science and Machine Learning 1 - Machine Learning - Neural Networks
+exportFilename: neural-networks
 theme: ../../../shared/theme
 fonts:
     sans: 'IBM Plex Serif'
