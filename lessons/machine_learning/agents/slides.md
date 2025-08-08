@@ -12,7 +12,7 @@ mdc: true # https://sli.dev/features/mdc
 layout: cover
 ---
 
-# AI Agents
+# AI Agents in 2025
 
 ---
 layout: image-right
@@ -21,15 +21,17 @@ backgroundSize: contain
 ---
 
 ## How the AI Works
-<p class="subheading">Refresher</p>
+<p class="subheading">Quick Refresher</p>
 
-**Architecture:** A neural network that predicts the next word in a sequence.
+**Architecture:** Neural network predicting next token in sequence
 
-**Tokens:** Tokens (words) are converted into embedding vectors that represent meaning.
+**Tokens:** Words → embedding vectors representing meaning
 
-**Context:** The Transformer updates token embeddings using the context from the $n$ preceding tokens of the context window.
+**Context:** Transformer updates embeddings using $n$ preceding tokens in context window
 
-**Chat Interface:** A chat conversation prompt is fed into the context window, the model generates more conversation, and you are inserted as the latest "user" input.
+**Chat Interface:** Conversation prompt → model continues dialogue → you're the next "user" input
+
+**Key insight:** It's all just sophisticated autocomplete
 
 ---
 layout: two-cols
@@ -37,13 +39,15 @@ layout: two-cols
 
 ## Prompt Engineering
 
-Crafting or refining prompts so the large language model (LLM) produces the desired outputs without altering its internal parameters.
+Crafting prompts to get desired outputs without changing model weights.
 
-**Techniques**
-- System prompts, role prompts, zero/few-shot examples
-- Chain-of-thought or step-by-step instructions
-- Use a larger model to generate condensed prompts for a smaller with fewer weights or a smaller context window.
-- Some APIs allow for saving and reusing prompts (OpenAI's _CustomGPTs_ or _prompt caching_).
+**Core Techniques**
+- System/role prompts + few-shot examples
+- Chain-of-thought reasoning ("Let's think step by step...")
+- Prompt compression (big model → small model)
+- Prompt caching for efficiency
+
+**2025 Reality:** Most users don't write prompts anymore—AI assistants handle the meta-prompting
 
 ::right::
 
@@ -52,27 +56,26 @@ import openai
 
 def question_to_sql(question: str) -> str:
     messages = [
-        # High-level guidance
         {"role": "system",
-         "content": "You transform user questions into valid SQL queries."},
-        # Example Q & A
+         "content": "You transform questions into SQL. Be concise."},
+        # Few-shot example
         {"role": "user",
-         "content": "Q: \"What are the top 10 oldest users from the 'users' table?\"\nA:"},
+         "content": "Top 10 oldest users?"},
         {"role": "assistant",
          "content": "SELECT * FROM users ORDER BY age DESC LIMIT 10;"},
-        # Now the real question
+        # Actual query
         {"role": "user",
-         "content": f"Q: \"{question}\"\nA:"}]
+         "content": question}]
+    
     response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
+        model="gpt-4o-mini",
         messages=messages,
-        max_tokens=60,
         temperature=0
     )
-    return response.choices[0].message["content"].strip()
+    return response.choices[0].message["content"]
 
-sql_query = question_to_sql("How many products are out of stock in 'inventory'?")
-print(sql_query)
+sql = question_to_sql("Products out of stock?")
+# → SELECT * FROM inventory WHERE quantity = 0;
 ```
 
 ---
@@ -80,75 +83,56 @@ layout: two-cols-header-2
 class: smaller-text
 ---
 
-## Prompt Engineering vs. Model Tuning
+## Prompt Engineering vs. Fine-Tuning: The 2025 Verdict
 
 ::left::
 
-### Prompt Engineering
-Crafting prompts to feed the context the model needs to generate the desired output.
+### Prompt Engineering Won
+- **Zero setup cost** beats training every time
+- **Instant iteration** vs hours/days of training
+- **Good enough** for 95% of use cases
+- Modern models so capable that prompting suffices
 
-- **Technique**  
-  - Role prompts, zero/few-shot examples
-  - Chain-of-thought or step-by-step instructions
-- **Advantages**  
-  - **Fast iteration**: You simply adjust text prompts
-  - **No re-training** needed
-- **Limitations**  
-  - Still constrained by the base model’s knowledge/capacity
-  - Complex tasks may require elaborate prompts
+**Winner:** API providers (OpenAI, Anthropic)  
+**Loser:** ML infrastructure companies
 
 ::right::
 
-### Model Tuning
-Adjusting the model’s weights or parameters (e.g., fine-tuning with new data).
-
-- **Technique**  
-  - Gradient descent updates on additional labeled data
-  - Methods like LoRA or full fine-tuning
-- **Advantages**  
-  - **Deep integration** of domain knowledge
-  - Potentially **better perf.** on specialized tasks
-- **Limitations**  
-  - **More expensive** (GPU time, training loops)
-  - Overfitting risks if data is limited
+### Fine-Tuning: Niche Use Cases
+- **Extreme latency requirements** (edge devices)
+- **Regulatory compliance** (on-prem)
+- **Cost optimization** at massive scale
+- **Unique domain languages** (protein folding)
 
 ---
 layout: two-cols-header-2
 ---
 
-## Small LLMs vs. Large LLMs
+## Model Size Wars: David vs Goliath
 
 ::left::
 
-### Small LLMs (Local)
-Llama 3.3, Mistral (7B)
-- **Pros**  
-  - Can run **locally** without huge GPU clusters  
-  - **Lower latency** for some tasks  
-  - More **privacy** (no external API calls)  
-- **Cons**  
-  - Limited context window  
-  - Often **less fluent** or accurate
-- **Use Cases**  
-  - Quick local text generation  
-  - Games or creative projects
-  - Offline/edge scenarios
+### Small Models
+**Llama 3.3 70B, Qwen 2.5, Gemma 3**
+- **Sweet spot:** Good enough for 80% of tasks
+- **Run locally** on M4 Max / RTX 4090
+- **Privacy first** (no data leaves device)
+- **Use cases:**
+  - Code completion
+  - Personal assistants
+  - Edge computing
 
 ::right::
 
-### Large LLMs (Cloud)
-GPT-4, Claude, Gemini
-- **Pros**  
-  - **High accuracy** & more “intelligence”  
-  - Bigger context window & built-in tooling  
-  - Vast **knowledge** and improved reasoning
-- **Cons**  
-  - **Costs** can grow quickly (API usage)  
-  - Dependent on cloud access  
-- **Use Cases**  
-  - Complex reasoning & advanced Q/A  
-  - Summarization of lengthy documents  
-  - Enterprise applications with large data
+### Large Models
+**GPT-4o, Claude 3.5, Gemini 2.0**
+- **Context windows:** 200K+ tokens
+- **Multimodal** by default
+- **Built-in tools** and web access
+- **Use cases:**
+  - Complex reasoning
+  - Research synthesis
+  - Creative work
 
 ---
 layout: image-right
@@ -157,48 +141,41 @@ backgroundSize: contain
 class: smaller-text
 ---
 
-## Retrieval-Augmented Generation
+## Retrieval-Augmented Generation (RAG)
 
-**Problem**: LLMs can’t memorize or keep up with all data (e.g., an entire encyclopedia).
+**The Pattern Everyone Uses:**
+1. **Chunk** documents into semantic pieces
+2. **Embed** chunks → vector database
+3. **Retrieve** relevant chunks for query
+4. **Generate** answer with citations
 
-**Solution**
-1. **Retrieve** documents based on a user query.
-2. **Augment** the prompt with documents.
-3. **Generate** an answer with references.
+**What's New in 2025:**
+- **Hybrid search** (vectors + keywords)
+- **Multi-hop reasoning** over documents
+- **Self-correcting** retrieval loops
+- **Streaming RAG** for real-time data
 
-**Benefits**
-- **Up-to-date** info without retraining the LLM.
-- **Reduced hallucinations**, w/ citations.
-- **Scalability**: Swap or update the doc store independently from the LLM.
+**Dirty Secret:** Most "AI products" = RAG + nice UI
 
 ---
 layout: image-right
-image: image-12.png
+image: image-9.png
 backgroundSize: contain
 ---
 
-## Example: Simple RAG Pipeline
+## Deep Research
 
-```python
-# 1. Encode user query -> vector
-query_vec = embed("latest NASA missions?")
+**What It Is:**
+- AI agents conducting multi-hour research sessions across the web and documents
+- Synthesizing hundreds of sources creating comprehensive reports
 
-# 2. Find top-k docs from vector DB
-docs = vector_db.search(query_vec, k=3)
+**How It Works:**
+1. **Query decomposition** → sub-questions
+2. **Parallel search** across domains
+3. **Source validation** and deduplication  
+4. **Iterative refinement** based on gaps
+5. **Synthesis** with citations
 
-# 3. Construct prompt
-prompt = f"""
-User question: "What are NASA's latest missions?"
-Relevant context:\n{docs[0].text}\n{docs[1].text}\n{docs[2].text}\n
-Answer in detail, referencing the context above.
-"""
-
-# 4. Generate
-response = llm.generate(prompt)
-print(response)
-```
-
-*No need to retrain the LLM; we simply feed relevant info as part of the prompt.*
 
 ---
 layout: image-right
