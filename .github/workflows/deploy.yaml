@@ -72,48 +72,6 @@ jobs:
           echo "=== DEBUGGING: Check if index.html files exist ==="
           find dist -name "index.html"
 
-      - name: Generate index.html
-        run: |
-          # Create CSS directory
-          mkdir -p dist/css
-          
-          # Download PicoCSS
-          curl -s https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.fluid.classless.min.css > dist/css/pico.fluid.classless.min.css
-          
-          cat > dist/index.html << 'EOF'
-          <html>
-            <header>
-              <link rel="stylesheet" href="css/pico.fluid.classless.min.css">
-            </header>
-            <body>
-              <h1>Columbia BigD103 - Course Lessons</h1>
-              <ul>
-          EOF
-
-          # Find all slides.md files and generate links (excluding ones with HIDE files)
-          find lessons -name "slides.md" | sort | while read slidepath; do
-            # Extract directory path (remove /slides.md suffix)
-            dirpath=$(dirname "$slidepath")
-
-            # Skip if HIDE file exists in the same directory
-            if [ -f "$dirpath/HIDE" ]; then
-              echo "Skipping link for $slidepath (HIDE file found)"
-              continue
-            fi
-
-            # Convert directory path to title (replace slashes and underscores with spaces, capitalize)
-            title=$(echo "$dirpath" | sed 's|/| - |g' | sed 's|_| |g' | sed 's|\b\w|\U&|g')
-
-            # Use the original directory structure for URLs
-            echo "<li><a href=\"./$dirpath/\">$title</a></li>" >> dist/index.html
-          done
-
-          cat >> dist/index.html << 'EOF'
-              </ul>
-            </body>
-          </html>
-          EOF
-
       # Create .nojekyll file to disable Jekyll processing
       - name: Create .nojekyll file and fix routing
         run: |
