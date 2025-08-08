@@ -1323,15 +1323,6 @@ print(f"Total training points: {len(X_train)}")
 ```
 
 ---
-layout: two-cols-header-2
----
-
-::right::
-
-<!-- Image: Classic circular dataset that's not linearly separable -->
-![](./image-svm-nonlinear.png)
-
----
 layout: image-right
 image: image-32.png
 backgroundSize: contain

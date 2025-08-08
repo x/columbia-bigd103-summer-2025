@@ -9,18 +9,6 @@ info: |
   Instructor: Mr. Peticolas
 transition: slide-left
 mdc: true # https://sli.dev/features/mdc
-addons:
-  - slidev-addon-python-runner
-python:
-  prelude: |
-    import math
-    import pandas as pd
-    import numpy as np
-  loadPackagesFromImports: true
-  loadOptions:
-    fullStdLib: false
-    packages:
-      - pandas
 layout: cover
 ---
 
@@ -89,6 +77,7 @@ print(sql_query)
 
 ---
 layout: two-cols-header-2
+class: smaller-text
 ---
 
 ## Prompt Engineering vs. Model Tuning
@@ -163,8 +152,9 @@ GPT-4, Claude, Gemini
 
 ---
 layout: image-right
-image: decks/15_llms/image-12.png
+image: image-12.png
 backgroundSize: contain
+class: smaller-text
 ---
 
 ## Retrieval-Augmented Generation
@@ -183,7 +173,7 @@ backgroundSize: contain
 
 ---
 layout: image-right
-image: decks/15_llms/image-12.png
+image: image-12.png
 backgroundSize: contain
 ---
 
@@ -212,7 +202,7 @@ print(response)
 
 ---
 layout: image-right
-image: decks/15_llms/image-13.png
+image: image-13.png
 backgroundSize: contain
 ---
 
@@ -294,7 +284,7 @@ structured_llm.invoke("Tell me a joke about cats")
 
 ---
 layout: image-right
-image: decks/15_llms/image-14.png
+image: image-14.png
 backgroundSize: contain
 ---
 
@@ -315,7 +305,7 @@ layout: section
 hideInToc: true
 ---
 
-# Emerging Tools and Frameworks
+# Emerging Frameworks
 
 ---
 layout: two-cols-header-2
@@ -359,6 +349,44 @@ calculator = StructuredTool.from_function(
     return_direct=True,
 )
 ```
+
+---
+layout: image-right
+image: image-6.png
+backgroundSize: contain
+---
+
+## Model Context Protocol (MCP)
+
+- **Open protocol** by Anthropic for LLM-to-tool communication
+- Standardizes how agents connect to external data sources and deterministic code functions.
+- **Key components:**
+  - Servers expose resources (databases, APIs, files)
+  - Clients (LLMs) request data via standardized format
+  - Transport layer (stdio, HTTP/SSE)
+
+
+---
+layout: image-right
+image: image-8.png
+backgroundSize: contain
+---
+
+# A2A (Application-to-Application)
+
+- **Direct AI-to-AI communication** without human intermediation
+- LLMs calling other LLMs/AI services programmatically
+- **Current examples:**
+  - ChatGPT ↔ Claude via APIs
+  - Multi-agent systems (AutoGPT, BabyAGI)
+- **Challenges:** Error propagation, cost explosion, alignment
+- **Future:** <u>Agent marketplaces</u>
+
+---
+layout: section
+---
+
+## Some Emerging Libraries
 
 ---
 layout: two-cols-header-2
@@ -495,7 +523,6 @@ hideInToc: true
 
 # Emerging Consumer Products
 
-
 ---
 layout: image-right
 image: image.png
@@ -621,6 +648,5 @@ backgroundSize: contain
 - You're in a unique position to adopt ths technology faster than anyone else.
 
 - Share what you learn with each other!
-
 
 ---

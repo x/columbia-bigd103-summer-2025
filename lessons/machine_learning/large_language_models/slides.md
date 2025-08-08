@@ -640,6 +640,4 @@ layout: header-link
 
 ## Exercise: Build a Chat AI
 
-https://shorturl.at/4AVMk
-
-TODO
+[bigd103.link/chatbot](https://bigd103.link/chatbot)
