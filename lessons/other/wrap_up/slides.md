@@ -341,92 +341,6 @@ layout: two-cols-header-2
 - Logic
 
 ---
-layout: section
-hideInToc: true
----
-
-# My Own Path to Data Science
-
----
-layout: image-right
-image: IMG_3865.png
-backgroundSize: contain
----
-## When I was Your Age
-
-- I had no access to Computer Science education at my high school.
-
-- I was president **and only member** of my High School's Computer Science Club.
-
-- I spent most of my free time building and messing around with Linux.
-
-- I started taking classes (in game development) at my Community College during my senior year.
-
-- I applied to college during the 2008 financial crisis and ended up at a Community College where I first studied Art but then got my Associate’s Degree in Mathematics.
-
----
-layout: image-right
-image: 7E060A12-AF37-4670-B7A2-4030D0F565D6_1_105_c.jpeg
-backgroundSize: contain
----
-
-## My Education
-
-- I transferred to **Rutgers University** and double-majored in **Computer Science** and **Mathmatics**.
-
-- I met other students who were passionate about coding and taught me what it meant to write code for fun.
-
-- At Rutgers, I was president (and not the only member) of the Computer Science Club and a TA in the Math Department.
-
----
-layout: image-right
-image: image-8.png
----
-
-## My Education (cont.)
-
-- I spent all my free time in college at **Hackathons** exploring new technologies.
-
-- I organized coding classes and workshops for non-traditional subjects like web and app development (there were no classes back then).
-
-- I joined a fellowship program called **HackNY** that brought me to NYC and placed me at a startup called **Branch** and I fell in love with startups.
-
----
-layout: image-right
-image: image-7.png
----
-
-## Work Experience
-
-- After my fellowship I contracted for startups until graduation.
-
-- After graduation, I worked as an Engineer at a startup, **Chartbeat**, where I discovered Data Science and a use for math.
-
-- In 2017 I joined a startup, **Oden Technologies**, as a Data Scientist.
-
-- In 2019 I published my first machine learning paper at **ICDM** in Beijing.
-
-- During my career I've presented at conferences around the world.
-
----
-layout: image-right
-image: 544C8A2B-915A-4472-A23D-357354656DAB_1_105_c.jpeg
----
-
-## My Coding Journey
-
-- My first programming language was **Bash**.
-- In HS I learned **C++** for game development.
-- In college I learned **JavaScript**, **Java**, and **C**.
-- At Branch: **Ruby** and **Coffeescript** 🪦
-- At Chartbeat: **Python**, **C**, and ✨**Clojure**✨.
-- At Oden: **Python**, **Go** 🤮, and **Java**.
-- Over the years I've specialized:
-  - Stream Processing
-  - Machine Learning
-  - Rapid Prototyping
-
----
 layout: center
 ---
 
@@ -506,10 +420,10 @@ layout: cover
 
 - I will be writing **Evaluation Letters** for all of you. These will include details about the course and the assignments you completed and will be delivered by Columbia.
 
-- I will email you all of the slides at the end of this class and the source code will be available at at [github.com/x/bigd-103](https://github.com/x/bigd-103).
+- I will email you all of the slides at the end of this class and the source code will be available at at [github.com/x/bigd-103-summer-2025](https://github.com/x/bigd-103-summer-2025).
 
 ### Contact
 
 **Personal Email**: [devon@peticol.as](mailto:devon@peticol.as)
 
-**Professional Github**: [github.com/x](http://github.com/x)
+**Personal Github**: [github.com/x](http://github.com/x)
