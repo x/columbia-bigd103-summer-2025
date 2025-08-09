@@ -91,7 +91,7 @@ jobs:
                 const segments = path.split('/').filter(s => s); // Remove empty segments
                 
                 // Check if this looks like a lesson path with a slide number
-                if (segments.length >= 4 && segments[0] === 'bigd-103' && segments[1] === 'lessons') {
+                if (segments.length >= 4 && segments[0] === 'columbia-bigd103-summer-2025' && segments[1] === 'lessons') {
                   const lastSegment = segments[segments.length - 1];
                   const isSlideNumber = /^\d+$/.test(lastSegment);
                   
@@ -110,14 +110,14 @@ jobs:
                   }
                 } else {
                   // Fallback: redirect to home
-                  window.location.replace('/bigd-103/');
+                  window.location.replace('/columbia-bigd103-summer-2025/');
                 }
               </script>
-              <meta http-equiv="refresh" content="0; url=/bigd-103/">
+              <meta http-equiv="refresh" content="0; url=/columbia-bigd103-summer-2025/">
             </head>
             <body>
               <p>Redirecting to presentation...</p>
-              <p><a href="/bigd-103/">Click here if you are not redirected</a></p>
+              <p><a href="/columbia-bigd103-summer-2025/">Click here if you are not redirected</a></p>
             </body>
           </html>
           EOF

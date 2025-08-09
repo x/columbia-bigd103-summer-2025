@@ -420,7 +420,7 @@ layout: cover
 
 - I will be writing **Evaluation Letters** for all of you. These will include details about the course and the assignments you completed and will be delivered by Columbia.
 
-- I will email you all of the slides at the end of this class and the source code will be available at at [github.com/x/bigd-103-summer-2025](https://github.com/x/bigd-103-summer-2025).
+- I will email you all of the slides at the end of this class and the source code will be available at at [github.com/x/columbia-bigd103-summer-2025](https://github.com/x/columbia-bigd103-summer-2025).
 
 ### Contact
 

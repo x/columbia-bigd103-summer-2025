@@ -2,7 +2,7 @@
 
 ## View Online
 
-[https://peticol.as/bigd-103/](https://peticol.as/bigd-103/)
+[https://peticol.as/columbia-bigd103-summer-2025/](https://peticol.as/columbia-bigd103-summer-2025/)
 
 ## Running Locally
 
