@@ -1,4 +1,4 @@
-# Columbia BigD103 - Course Lessons
+# Columbia BIGD103 - Course Lessons
 
 ## View Online
 
