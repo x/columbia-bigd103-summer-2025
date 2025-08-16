@@ -34,7 +34,7 @@ layout: center
 
 ---
 layout: image-left
-image: image-2.png
+image: image-2-2.png
 backgroundSize: contain
 ---
 
