@@ -53,7 +53,7 @@ layout: section
 
 ```mermaid {scale: 0.45}
 flowchart TD
-    
+
     subgraph Coding
         Python("Coding<br>(Python, Jupyter)")
         Analysis("Dataset Analysis<br>(Pandas)")
@@ -126,7 +126,7 @@ image: image-1.png
 
 **Overlap**: Works closely with all other tech roles.
 
-**Salary**: \$128K–\$253K  
+**Salary**: \$128K–\$253K
 <small>(Levels.fyi, 25th–75th percentile)</small>
 
 **Education**:
@@ -149,7 +149,7 @@ image: image-2.png
 
 **Overlap**: Strong ties to Software Engineering and MLE.
 
-**Salary**: \$128K–\$253K  
+**Salary**: \$128K–\$253K
 <small>(Levels.fyi, 25th–75th percentile)</small>
 
 **Education**:
@@ -171,7 +171,7 @@ image: image-3.png
 
 **Overlap**: Primarily with Data Engineering and Data Science.
 
-**Salary**: \$128K–\$253K  
+**Salary**: \$128K–\$253K
 <small>(Levels.fyi, 25th–75th percentile)</small>
 
 **Education**:
@@ -194,7 +194,7 @@ image: image-4.png
 
 **Overlap**: MLE, Data Engineering, and Business Analysts.
 
-**Salary**: \$125K–\$222K  
+**Salary**: \$125K–\$222K
 <small>(Levels.fyi, 25th–75th percentile)</small>
 
 **Education**:
@@ -217,7 +217,7 @@ image: image-5.png
 
 **Overlap**: Collaborates with Data Science and Data Engineering.
 
-**Salary**: \$87K–\$145K  
+**Salary**: \$87K–\$145K
 <small>(Levels.fyi, 25th–75th percentile)</small>
 
 **Education**:
@@ -289,7 +289,7 @@ Sales
 
 Environmental Science
 
-Marine Biology 
+Marine Biology
 
 Public Policy
 
@@ -424,6 +424,6 @@ layout: cover
 
 ### Contact
 
-**Personal Email**: [devon@peticol.as](mailto:devon@peticol.as)
+**Email**: [dp3305@columbia.edu](mailto:dp3305@columbia.edu)
 
-**Personal Github**: [github.com/x](http://github.com/x)
+**Github**: [github.com/x](http://github.com/x)
